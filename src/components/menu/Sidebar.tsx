@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from '../menu/Sidebar.module.css';
 import logo from '../../assets/logo.svg';
 import { SidebarData } from './SidebarData';
@@ -13,7 +14,7 @@ export function Sidebar() {
                     return (
                         <li key={key}>
                             <span>{value.icon}</span>
-                            <a href={value.link}>{value.title}</a>
+                            <Link to={value.link}>{value.title}</Link>
                         </li>
                     )
                 })}
