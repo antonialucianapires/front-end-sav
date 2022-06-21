@@ -1,8 +1,15 @@
+import './global.css';
+import styles from './App.module.css';
+import { Sidebar } from './components/menu/Sidebar';
+
 function App() {
 
   return (
-    <div className="App">
-        <h1>SAV - Sistema de Avaliação Virtual</h1>
+    <div>
+      <div className={styles.wrapper}>
+        <Sidebar />
+      <h1>Dashboard</h1>
+      </div>
     </div>
   )
 }
