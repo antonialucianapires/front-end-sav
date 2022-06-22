@@ -4,7 +4,7 @@ export const SidebarData = [
     {
         title: "início",
         icon: <House size={24} />,
-        link: "/inicio"
+        link: "/"
     },
     {
         title: "relatórios",
