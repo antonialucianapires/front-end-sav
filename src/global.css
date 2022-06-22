@@ -1,0 +1,38 @@
+:root {
+    --white: #ffffff;
+
+    --back-500: #000000; 
+
+    --blue-500: #2C60AE;
+    --blue-700: #3751FF;
+
+    --gray-300:#DFE0EB;
+    --gray-500: #69696F;
+
+    --green-100: #88D9AD;
+    --green-200: #5EAC82;
+    --green-500: #246441;
+
+    --red-200: #F9ADA8;
+    --red-500: #D16565;
+
+    --yellow-200: #FFE99D;
+    --yellow-500: #CA9100;
+}
+
+:focus {
+    outline: transparent;
+    box-shadow: 0 0 0 2px var(--blue-500);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, input, textarea, button {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+}
