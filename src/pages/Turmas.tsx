@@ -1,7 +1,9 @@
+import { Header } from "../components/header/Header";
+
 export function Turmas() {
     return (
         <div>
-            <h1>Página turmas</h1>
+            <Header title="Turmas" username="Andreia Gomes" />
         </div>
     );
 }
