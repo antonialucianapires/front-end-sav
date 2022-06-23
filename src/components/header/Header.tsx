@@ -1,4 +1,5 @@
 import { Bell } from "phosphor-react";
+import { Avatar } from "../avatar/Avatar";
 import styles from './Header.module.css';
 
 export function Header(props: any) {
@@ -9,6 +10,7 @@ export function Header(props: any) {
                 <Bell color="var(--blue-500)" />
                 <span></span>
                 <p>{props.username}</p>
+                <Avatar />
             </div>
         </header>
     )
