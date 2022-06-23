@@ -1,7 +1,9 @@
+import { Header } from "../components/header/Header";
+
 export function Periodo() {
     return (
         <div>
-            <h1>Página períodos</h1>
+            <Header title="Períodos" username="Andreia Gomes" />
         </div>
     );
 }

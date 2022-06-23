@@ -1,7 +1,9 @@
+import { Header } from "../components/header/Header";
+
 export function Configuracao() {
     return (
         <div>
-            <h1>Página configuracao</h1>
+            <Header title="Configuração" username="Andreia Gomes" />
         </div>
     );
 }
