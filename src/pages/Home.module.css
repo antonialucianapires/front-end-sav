@@ -1,0 +1,11 @@
+
+.home {
+    max-width: 70rem;
+    padding: 1rem;
+}
+
+.listCardInfo {
+    display: flex;
+    gap: 2.4rem;
+    margin-top: 2rem;
+}
