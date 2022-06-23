@@ -1,8 +1,17 @@
-.avatar {
+.avatarSmall {
     width: calc(2rem + 12px);
     height: calc(2rem + 12px);
     border-radius: 50px;
     object-fit: cover;
     border: 4px solid var(--white);
-    outline: 3px solid var(--gray-300);
+    outline: 2px solid var(--gray-300);
+}
+
+.avatarMedium {
+    width: calc(6rem + 12px);
+    height: calc(6rem + 12px);
+    border-radius: 50px;
+    object-fit: cover;
+    border: 4px solid var(--white);
+    outline: 2px solid var(--gray-300);
 }
