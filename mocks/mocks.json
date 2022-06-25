@@ -5,5 +5,12 @@
             "get-infos:empty",
             "get-infos:success"
         ] 
+    },
+    {
+        "id": "get-movimentacoes", 
+        "routesVariants": [
+            "get-movimentacoes:empty",
+            "get-movimentacoes:success"
+        ] 
     }
 ]
