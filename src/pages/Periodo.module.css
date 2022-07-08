@@ -9,3 +9,9 @@
     gap: 1.5rem;
     margin-top: 2rem;
 }
+
+.listaPeriodos {
+    display: flex;
+    margin-top: 2rem;
+    gap: 1.5rem;
+}

@@ -1,13 +1,7 @@
 import { InputSearch } from "../components/form/input/InputSearch";
 import { SelectPeriodo } from "../components/form/select/SelectPeriodo";
 import { Header } from "../components/header/Header";
-import { useFetch } from "../hooks/useFetch";
 import styles from './Relatorio.module.css';
-
-type infosCard = {
-    title: string;
-    value: string;
-}
 
 export function Relatorio() {
 
