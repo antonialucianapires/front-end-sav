@@ -27,7 +27,7 @@ function App() {
             <Route path='/turmas' element={<Turmas />} />
             <Route path='/avisos' element={<Turmas />} />
             <Route path='/configuracoes' element={<Configuracao />} />
-            <Route path='/periodos/resumo' element={<PeriodoVisualizacao />} />
+            <Route path='/periodos/:id' element={<PeriodoVisualizacao />} />
           </Routes>
         </Router>
       </div>

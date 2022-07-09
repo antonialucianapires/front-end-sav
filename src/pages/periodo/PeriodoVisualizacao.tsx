@@ -6,6 +6,7 @@ import { SelectTipoPeriodo } from "../../components/form/select/SelectTipoPeriod
 import { Line } from "../../components/others/Line";
 import { Title } from "../../components/others/Title";
 import { PageButton } from "../../components/form/button/PageButton";
+import { useParams } from "react-router-dom";
 
 type Subperiodo = {
     id: number;
@@ -27,7 +28,9 @@ type PeriodoType = {
 
 export function PeriodoVisualizacao() {
 
-    let { data: periodo } = useFetch<PeriodoType>('https://back-end-sav.herokuapp.com/sav/api/periodos/4?com_subperiodos=true', 'get');
+    const { id } = useParams();
+
+    let { data: periodo } = useFetch<PeriodoType>(`https://back-end-sav.herokuapp.com/sav/api/periodos/${id}?com_subperiodos=true`, 'get');
 
     let periodoValue: PeriodoType = {
         id: 0,
