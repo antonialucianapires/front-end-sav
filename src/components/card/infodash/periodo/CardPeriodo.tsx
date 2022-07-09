@@ -33,6 +33,8 @@ export function CardPeriodo(periodo: Periodo) {
         }
     }
 
+    const isDesabilidado = periodo.status === 'encerrado';
+
     return (
         <div className={styles.cardPeriodo}>
             <h3>{periodo.nome}</h3>
@@ -42,8 +44,8 @@ export function CardPeriodo(periodo: Periodo) {
             </div>
             <ul id='listaOpcoes' className={mostrarOpcoes ? styles.comOpcoes : styles.semOpcoes}>
                 <li>Visualizar</li>
-                <li>Editar</li>
-                <li>Excluir</li>
+                <li className={isDesabilidado ? styles.opcaoDesabilitada : styles.opcaoHabilitada}>Editar</li>
+                <li className={isDesabilidado ? styles.opcaoDesabilitada : styles.opcaoHabilitada}>Excluir</li>
             </ul>
         </div>
     );

@@ -44,6 +44,7 @@
 }
 
 .comOpcoes {
+    width: 120px;
     color: var(--gray-500);
     background: var(--white);
     border: 1px solid var(--gray-300);
@@ -56,4 +57,9 @@
     box-shadow: -1px 1px 1px #c9c9c9;
     z-index: 100;
     display: block;
+    line-height: 1.7rem;
+}
+
+.opcaoDesabilitada {
+    color: var(--gray-300);
 }
