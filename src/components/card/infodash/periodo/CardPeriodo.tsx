@@ -45,8 +45,8 @@ export function CardPeriodo(periodo: Periodo) {
                 <DotsThreeOutlineVertical size={25} color={"var(--gray-500)"} onClick={mostrarOpcoesFuncao} cursor={"pointer"} />
             </div>
             <ul id='listaOpcoes' className={mostrarOpcoes ? styles.comOpcoes : styles.semOpcoes}>
-                <li><Link className={styles.opcaoHabilitada} to={"/periodos/" + periodo.idPeriodo}>Visualizar</Link></li>
-                <li className={isDesabilidado ? styles.opcaoDesabilitada : styles.opcaoHabilitada}>Editar</li>
+                <li><Link className={styles.opcaoHabilitada} to={"/periodos/" + periodo.idPeriodo + "/resumo"}>Visualizar</Link></li>
+                <li className={isDesabilidado ? styles.opcaoDesabilitada : styles.opcaoHabilitada}><Link className={styles.opcaoHabilitada} to={"/periodos/" + periodo.idPeriodo + "/edicao"}>Editar</Link></li>
                 <li className={isDesabilidado ? styles.opcaoDesabilitada : styles.opcaoHabilitada}>Excluir</li>
             </ul>
         </div>

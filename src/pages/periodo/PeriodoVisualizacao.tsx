@@ -53,7 +53,7 @@ export function PeriodoVisualizacao() {
             <Header title={periodo?.nome_periodo} subtitle="Veja o resumo do período e subperíodos do processo de avaliação" username="Andreia Gomes" />
             <form className={styles.formularioPeriodo} key={periodoValue.id}>
                 <InputText typeInput="text" idInput="nomePeriodo" valueInput={periodoValue.nome_periodo} edicao={false} />
-                <SelectTipoPeriodo nomeTipoAtual={periodoValue.status} />
+                <SelectTipoPeriodo nomeTipoAtual={periodoValue.tipo_periodo} />
                 <InputText typeInput="text" idInput="dataInicioPeriodo" valueInput={periodoValue.data_inicio} edicao={false} />
                 <InputText typeInput="text" idInput="dataFimPeriodo" valueInput={periodoValue.data_fim} edicao={false} />
                 <Line />

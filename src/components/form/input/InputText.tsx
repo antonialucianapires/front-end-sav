@@ -1,14 +1,16 @@
+import moment from "moment";
 import { useState } from "react";
 import styles from "./InputText.module.css";
 
 type InputTextType = {
     typeInput: string;
-    valueInput: string;
+    valueInput: any;
     idInput: string;
     edicao: boolean;
 }
 
 export function InputText(input: InputTextType){
+
     const [valueInputText, setValueInputText] = useState(input.valueInput);
 
     return(

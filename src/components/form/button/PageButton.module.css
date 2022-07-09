@@ -10,7 +10,7 @@
     padding: 12px;
     background: var(--blue-500);
     border-radius: 8px;
-    min-width: 100px;
+    min-width: 150px;
     max-width: 200px;
     box-shadow: 0px 3px 3px var(--gray-500);
     margin-top: 10px;
@@ -25,7 +25,7 @@
     padding: 12px;
     background: var(--red-500);
     border-radius: 8px;
-    min-width: 100px;
+    min-width: 150px;
     max-width: 200px;
     box-shadow: 0px 3px 3px var(--gray-500);
 }
@@ -38,7 +38,7 @@
     padding: 12px;
     background: var(--green-200);
     border-radius: 8px;
-    min-width: 100px;
+    min-width: 150px;
     max-width: 200px;
     box-shadow: 0px 3px 3px var(--gray-500);
 }

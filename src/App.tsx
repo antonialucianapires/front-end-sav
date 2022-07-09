@@ -10,6 +10,7 @@ import { Usuarios } from './pages/Usuarios';
 import { Turmas } from './pages/Turmas';
 import { Configuracao } from './pages/Configuracao';
 import { PeriodoVisualizacao } from './pages/periodo/PeriodoVisualizacao';
+import { PeriodoEdicao } from './pages/periodo/PeriodoEdicao';
 
 function App() {
 
@@ -27,7 +28,8 @@ function App() {
             <Route path='/turmas' element={<Turmas />} />
             <Route path='/avisos' element={<Turmas />} />
             <Route path='/configuracoes' element={<Configuracao />} />
-            <Route path='/periodos/:id' element={<PeriodoVisualizacao />} />
+            <Route path='/periodos/:id/resumo' element={<PeriodoVisualizacao />} />
+            <Route path='/periodos/:id/edicao' element={<PeriodoEdicao />} />
           </Routes>
         </Router>
       </div>
