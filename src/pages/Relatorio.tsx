@@ -1,4 +1,7 @@
 import { CardInfoDash } from "../components/card/infodash/CardInfoDash";
+import { GenericButton } from "../components/form/button/GenericButton";
+import { InputSearch } from "../components/form/input/InputSearch";
+import { SelectPeriodo } from "../components/form/select/SelectPeriodo";
 import { Header } from "../components/header/Header";
 import { useFetch } from "../hooks/useFetch";
 import styles from './Relatorio.module.css';
@@ -25,6 +28,10 @@ export function Relatorio() {
                 }
 
             </section>
+               <form className={styles.formSearch} action="">
+                <InputSearch inputName={"pesquisaRelatorio"} messagePlaceholder={"Buscar relatório por título"} />
+                <SelectPeriodo />
+               </form>
         </div>
     );
 }

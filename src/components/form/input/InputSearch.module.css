@@ -1,0 +1,18 @@
+.formInputSearch {
+    background: var(--gray-300);
+    width: 80%;
+    display: flex;
+    gap: 1rem;
+    color: var(--gray-500);
+    border: 0;
+    border-radius: 8px;
+    align-items: center;
+    padding: 1rem;
+}
+
+.inputSearch {
+    background: var(--gray-300);
+    width: 100%;
+    border: 0;
+    outline: none;   
+}
