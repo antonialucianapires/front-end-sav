@@ -1,21 +1,25 @@
-import styles from './SelectPeriodo.module.css'
+import { useFetch } from '../../../hooks/useFetch';
+import styles from './Select.module.css'
 
-const periodos = [{
-    id: 1,
-    nome: "2020"
-},
-{
-    id: 2,
-    nome: "2021"
-}];
+type Periodo = {
+    id: number;
+    nome_periodo: string;
+}
 
 export function SelectPeriodo() {
-    return(
-            <select className={styles.selectPeriodo}>
-                <option value="default">Selecione um período</option>
-                {periodos.map(periodo => {
-                    return <option value={periodo.nome}>{periodo.nome}</option>
-                })}
-            </select>
+
+    let { data: periodos } = useFetch<Periodo[]>('https://back-end-sav.herokuapp.com/sav/api/periodos', 'get');
+
+    if (!periodos) {
+        periodos = [];
+    }
+
+    return (
+        <select className={styles.selectPeriodo}>
+            <option value="default">Selecione um período</option>
+            {periodos.map(periodo => {
+                return <option key={periodo.id} value={periodo.id}>{periodo.nome_periodo.replace(/\D/gim, '')}</option>
+            })}
+        </select>
     );
 }
