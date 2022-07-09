@@ -49,17 +49,6 @@ export function PeriodoEdicao() {
         subperiodos = periodo.subperiodos;
     }
 
-    switch(periodoValue.tipo_periodo) {
-        case 'BIMESTRAL':
-            subperiodos = subperiodos;
-            break;
-        case 'TRIMESTRAL':
-            subperiodos = subperiodos.slice(0,4);
-            break;
-        case 'SEMESTRAL':
-            subperiodos = subperiodos.slice(0,2);
-    }
-
     return (
         <div className={styles.periodoEdicao}>
             <Header title={`${periodoValue.nome_periodo} | edição`} subtitle="Revise e edite o período de avaliação" username="Andreia Gomes" />
