@@ -5,7 +5,7 @@ import { SelectPeriodo } from '../components/form/select/SelectPeriodo';
 import { CardPeriodo } from '../components/card/infodash/periodo/CardPeriodo';
 import { useFetch } from '../hooks/useFetch';
 
-type Periodo = {
+type PeriodoType = {
     id: number;
     nome_periodo: string;
     status: string;
@@ -14,7 +14,7 @@ type Periodo = {
 
 export function Periodo() {
 
-    let { data: periodos } = useFetch<Periodo[]>('https://back-end-sav.herokuapp.com/sav/api/periodos', 'get');
+    let { data: periodos } = useFetch<PeriodoType[]>('https://back-end-sav.herokuapp.com/sav/api/periodos', 'get');
 
     if (!periodos) {
         periodos = [];
@@ -29,7 +29,7 @@ export function Periodo() {
             </form>
             <section className={styles.listaPeriodos}>
                 {periodos.map(periodo => {
-                    return <CardPeriodo key={periodo.id} nome={periodo.nome_periodo} status={periodo.status} />
+                    return <CardPeriodo key={periodo.id} nome={periodo.nome_periodo} status={periodo.status} idPeriodo={periodo.id}/>
                 })}
             </section>
         </div>

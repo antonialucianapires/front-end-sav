@@ -1,5 +1,5 @@
 import { useFetch } from '../../../hooks/useFetch';
-import styles from './SelectPeriodo.module.css'
+import styles from './Select.module.css'
 
 type Periodo = {
     id: number;

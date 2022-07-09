@@ -1,0 +1,10 @@
+.periodoVisualizacao {
+    max-width: 70rem;
+    padding: 1rem;
+}
+
+.formularioPeriodo {
+    display: flex;
+    flex-flow: column wrap;
+    
+}

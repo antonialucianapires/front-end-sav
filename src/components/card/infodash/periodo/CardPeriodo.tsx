@@ -1,8 +1,10 @@
 import { DotsThreeOutlineVertical } from 'phosphor-react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './CardPeriodo.module.css';
 
 type Periodo = {
+    idPeriodo: number;
     nome: string;
     status: string;
 };
@@ -43,7 +45,7 @@ export function CardPeriodo(periodo: Periodo) {
                 <DotsThreeOutlineVertical size={25} color={"var(--gray-500)"} onClick={mostrarOpcoesFuncao} cursor={"pointer"} />
             </div>
             <ul id='listaOpcoes' className={mostrarOpcoes ? styles.comOpcoes : styles.semOpcoes}>
-                <li>Visualizar</li>
+                <li><Link to="/periodos/resumo">Visualizar</Link></li>
                 <li className={isDesabilidado ? styles.opcaoDesabilitada : styles.opcaoHabilitada}>Editar</li>
                 <li className={isDesabilidado ? styles.opcaoDesabilitada : styles.opcaoHabilitada}>Excluir</li>
             </ul>
