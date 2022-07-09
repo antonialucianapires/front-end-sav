@@ -1,0 +1,44 @@
+.colorButtonDefault {
+    background: var(--gray-500);
+}
+
+.colorButtonBlue {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--white);
+    text-decoration: none;
+    padding: 12px;
+    background: var(--blue-500);
+    border-radius: 8px;
+    min-width: 100px;
+    max-width: 200px;
+    box-shadow: 0px 3px 3px var(--gray-500);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.colorButtonRed {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--white);
+    text-decoration: none;
+    padding: 12px;
+    background: var(--red-500);
+    border-radius: 8px;
+    min-width: 100px;
+    max-width: 200px;
+    box-shadow: 0px 3px 3px var(--gray-500);
+}
+
+.colorButtonGreen {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--white);
+    text-decoration: none;
+    padding: 12px;
+    background: var(--green-200);
+    border-radius: 8px;
+    min-width: 100px;
+    max-width: 200px;
+    box-shadow: 0px 3px 3px var(--gray-500);
+}

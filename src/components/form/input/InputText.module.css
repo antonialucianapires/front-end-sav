@@ -1,6 +1,6 @@
 .inputText {
     background: var(--gray-300);
-    width: 80%;
+    width: 100%;
     display: flex;
     gap: 1rem;
     color: var(--gray-500);
@@ -8,11 +8,12 @@
     border-radius: 8px;
     align-items: center;
     padding: 1rem;
+    margin-bottom: 10px;
 }
 
 .inputTextEdit {
     background: var(--gray-300);
-    width: 80%;
+    width: 100%;
     display: flex;
     gap: 1rem;
     color: var(--gray-500);
@@ -21,4 +22,5 @@
     align-items: center;
     padding: 1rem;
     cursor: auto;
+    margin-bottom: 10px;
 }

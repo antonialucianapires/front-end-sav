@@ -14,7 +14,7 @@ export function SelectTipoPeriodo(tipoAtual?: TipoAtual) {
 
     if (tipoAtual) {
 
-        if (!tipoAtual.nomeTipoAtual) {
+        if (tipoAtual.nomeTipoAtual) {
             return (<select className={styles.selectPeriodo}>
                 <option key={tipoAtual.nomeTipoAtual} value={tipoAtual.nomeTipoAtual}>{tipoAtual.nomeTipoAtual}</option>
             </select>)

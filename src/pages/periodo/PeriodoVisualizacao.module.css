@@ -5,6 +5,13 @@
 
 .formularioPeriodo {
     display: flex;
-    flex-flow: column wrap;
-    
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+
+}
+
+.listaSubperiodos {
+    display: flex;
+    gap: 1rem;
 }
