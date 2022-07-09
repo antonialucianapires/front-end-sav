@@ -63,3 +63,7 @@
 .opcaoDesabilitada {
     color: var(--gray-300);
 }
+
+.opcaoHabilitada  {
+    text-decoration: none;
+}
