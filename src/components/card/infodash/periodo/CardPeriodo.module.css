@@ -5,6 +5,7 @@
     border-radius: 8px;
     padding: 1rem;
     width: 400px;
+    position: relative;
 }
 
 .statusEncerrado {
@@ -34,3 +35,25 @@
     font-weight: bold;
 }
 
+.statusBox {
+    display: flex;
+}
+
+.semOpcoes {
+    display: none;
+}
+
+.comOpcoes {
+    color: var(--gray-500);
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    list-style: none;
+    padding: 15px;
+    border-radius: 0px 8px 8px 8px;
+    position: absolute;
+    left: 310px;
+    top: 45px;
+    box-shadow: -1px 1px 1px #c9c9c9;
+    z-index: 100;
+    display: block;
+}
