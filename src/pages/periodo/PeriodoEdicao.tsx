@@ -6,7 +6,6 @@ import { Header } from "../../components/header/Header";
 import { Line } from "../../components/others/Line";
 import { Title } from "../../components/others/Title";
 import { useFetch } from "../../hooks/useFetch";
-import moment, { Moment } from "moment";
 import styles from "./PeriodoEdicao.module.css";
 
 type Subperiodo = {

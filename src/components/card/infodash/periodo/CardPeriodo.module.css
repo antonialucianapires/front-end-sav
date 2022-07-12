@@ -61,6 +61,12 @@
 }
 
 .opcaoDesabilitada {
+    pointer-events: none;
+    color: var(--gray-300);
+}
+
+.opcaoDesabilitada:visited {
+    pointer-events: none;
     color: var(--gray-300);
 }
 

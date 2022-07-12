@@ -1,6 +1,7 @@
 import { DotsThreeOutlineVertical } from 'phosphor-react';
 import { useState } from 'react';
 import {  Link } from 'react-router-dom';
+import { useFetch } from '../../../../hooks/useFetch';
 import styles from './CardPeriodo.module.css';
 
 type Periodo = {
@@ -8,6 +9,11 @@ type Periodo = {
     nome: string;
     status: string;
 };
+
+type Payload = {
+    message: string;
+    status: number;
+}
 
 export function CardPeriodo(periodo: Periodo) {
 
@@ -35,6 +41,13 @@ export function CardPeriodo(periodo: Periodo) {
         }
     }
 
+    function removerPeriodo() {
+        
+        const {data : response } = useFetch<Payload>(`https://back-end-sav.herokuapp.com/sav/api/periodos/${periodo.idPeriodo}`, 'delete');
+
+        console.log(response)
+    }
+
     const isDesabilidado = periodo.status === 'encerrado';
 
     return (
@@ -47,7 +60,7 @@ export function CardPeriodo(periodo: Periodo) {
             <ul id='listaOpcoes' className={mostrarOpcoes ? styles.comOpcoes : styles.semOpcoes}>
                 <li><Link className={styles.opcaoHabilitada} to={"/periodos/" + periodo.idPeriodo + "/resumo"}>Visualizar</Link></li>
                 <li className={isDesabilidado ? styles.opcaoDesabilitada : styles.opcaoHabilitada}><Link className={styles.opcaoHabilitada} to={"/periodos/" + periodo.idPeriodo + "/edicao"}>Editar</Link></li>
-                <li className={isDesabilidado ? styles.opcaoDesabilitada : styles.opcaoHabilitada}>Excluir</li>
+                <li className={isDesabilidado ? styles.opcaoDesabilitada : styles.opcaoHabilitada}><button type='submit' className={styles.opcaoHabilitada} onClick={removerPeriodo}>Excluir</button></li>
             </ul>
         </div>
     );

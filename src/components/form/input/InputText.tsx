@@ -1,4 +1,3 @@
-import moment from "moment";
 import { useState } from "react";
 import styles from "./InputText.module.css";
 
