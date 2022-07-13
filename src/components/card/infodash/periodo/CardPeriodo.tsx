@@ -1,6 +1,7 @@
+import axios from 'axios';
 import { DotsThreeOutlineVertical } from 'phosphor-react';
 import { useState } from 'react';
-import {  Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useFetch } from '../../../../hooks/useFetch';
 import styles from './CardPeriodo.module.css';
 
@@ -16,6 +17,28 @@ type Payload = {
 }
 
 export function CardPeriodo(periodo: Periodo) {
+
+    const [periodoCard, setPeriodoCard] = useState<Periodo>(periodo);
+
+    const periodoHandler = () => {
+        axios.get(`https://back-end-sav.herokuapp.com/sav/api/periodos/${periodoCard.idPeriodo}`)
+            .then((response) => {
+                setPeriodoCard(response.data.payload);
+            })
+    }
+
+    const deleteHandler = (id: number) => {
+
+        axios.delete(`https://back-end-sav.herokuapp.com/sav/api/periodos/${id}`)
+            .then(() => {
+                if (id === periodo.idPeriodo) {
+                    return;
+                } else {
+                    periodoHandler()
+                }
+            })
+    }
+
 
     let style = styles.statusDefault;
 
@@ -40,27 +63,19 @@ export function CardPeriodo(periodo: Periodo) {
             setMostrarOpcoes(true)
         }
     }
-
-    function removerPeriodo() {
-        
-        const {data : response } = useFetch<Payload>(`https://back-end-sav.herokuapp.com/sav/api/periodos/${periodo.idPeriodo}`, 'delete');
-
-        console.log(response)
-    }
-
-    const isDesabilidado = periodo.status === 'encerrado';
+    const isDesabilidado = periodoCard.status === 'encerrado';
 
     return (
         <div className={styles.cardPeriodo}>
-            <h3>{periodo.nome}</h3>
+            <h3>{periodoCard.nome}</h3>
             <div className={styles.statusBox}>
-                <p className={style}>{periodo.status}</p>
+                <p className={style}>{periodoCard.status}</p>
                 <DotsThreeOutlineVertical size={25} color={"var(--gray-500)"} onClick={mostrarOpcoesFuncao} cursor={"pointer"} />
             </div>
             <ul id='listaOpcoes' className={mostrarOpcoes ? styles.comOpcoes : styles.semOpcoes}>
-                <li><Link className={styles.opcaoHabilitada} to={"/periodos/" + periodo.idPeriodo + "/resumo"}>Visualizar</Link></li>
-                <li className={isDesabilidado ? styles.opcaoDesabilitada : styles.opcaoHabilitada}><Link className={styles.opcaoHabilitada} to={"/periodos/" + periodo.idPeriodo + "/edicao"}>Editar</Link></li>
-                <li className={isDesabilidado ? styles.opcaoDesabilitada : styles.opcaoHabilitada}><button type='submit' className={styles.opcaoHabilitada} onClick={removerPeriodo}>Excluir</button></li>
+                <li><Link className={styles.opcaoHabilitada} to={"/periodos/" + periodoCard.idPeriodo + "/resumo"}>Visualizar</Link></li>
+                <li className={isDesabilidado ? styles.opcaoDesabilitada : styles.opcaoHabilitada}><Link className={styles.opcaoHabilitada} to={"/periodos/" + periodoCard.idPeriodo + "/edicao"}>Editar</Link></li>
+                <li className={isDesabilidado ? styles.opcaoDesabilitada : styles.opcaoHabilitada}><Link to={"/periodos"} className={styles.opcaoHabilitada} onClick={() => deleteHandler(periodoCard.idPeriodo)}>Excluir</Link></li>
             </ul>
         </div>
     );
