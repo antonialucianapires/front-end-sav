@@ -21,7 +21,7 @@ export function SelectTipoPeriodo(tipoAtual?: TipoAtual) {
         } 
     }
 
-    let { data: tipos } = useFetch<TipoPeriodo[]>('https://back-end-sav.herokuapp.com/sav/api/periodos/tipos', 'get');
+    let { data: tipos } = useFetch<TipoPeriodo[]>('http://localhost:8080/sav/api/periodos/tipos', 'get');
 
     if (!tipos) {
         tipos = [];
