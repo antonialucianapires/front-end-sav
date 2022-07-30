@@ -30,7 +30,7 @@ export function PeriodoVisualizacao() {
 
     const { id } = useParams();
 
-    let { data: periodo } = useFetch<PeriodoType>(`https://back-end-sav.herokuapp.com/sav/api/periodos/${id}?com_subperiodos=true`, 'get');
+    let { data: periodo } = useFetch<PeriodoType>(`http://localhost:8080/sav/api/periodos/${id}?com_subperiodos=true`, 'get');
 
     let periodoValue: PeriodoType = {
         id: 0,

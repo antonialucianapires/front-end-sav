@@ -31,7 +31,7 @@ export function SelectTipoPeriodo(tipoAtual?: TipoAtual) {
         <select className={styles.selectPeriodo}>
             <option value="default">Tipo período</option>
             {tipos.map(tipo => {
-                return <option key={tipo.id} value={tipo.id} defaultValue={!tipoAtual ? tipoAtual : ""}>{tipo.nome}</option>
+                return <option id="tipoPeriodo" key={tipo.id} value={tipo.id} defaultValue={!tipoAtual ? tipoAtual : ""}>{tipo.nome}</option>
             })}
         </select>
     );
