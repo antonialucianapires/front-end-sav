@@ -81,33 +81,34 @@ export function PeriodoEdicao() {
             .catch(() => console.log("deu erro"));
 
 
-    return (
-        <div className={styles.periodoEdicao}>
-            <Header title={`${periodoValue.nome_periodo} | edição`} subtitle="Revise e edite o período de avaliação" username="Andreia Gomes" />
-            <form className={styles.formularioPeriodo} key={periodoValue.id} onSubmit={() => navigate("/periodos")}>
-                <InputText typeInput="text" idInput="nomePeriodo" valueInput={periodoValue.nome_periodo} edicao={true} />
-                <SelectTipoPeriodo nomeTipoAtual={periodoValue.tipo_periodo} />
-                <InputText typeInput="date" idInput="dataInicioPeriodo" valueInput={periodoValue.data_inicio} edicao={true} />
-                <InputText typeInput="date" idInput="dataFimPeriodo" valueInput={periodoValue.data_fim} edicao={true} />
-                <Line />
-                <Title valueTitle="Subperíodos" />
-                {subperiodos.map((subperiodo) => {
+        return (
+            <div className={styles.periodoEdicao}>
+                <Header title={`${periodoValue.nome_periodo} | edição`} subtitle="Revise e edite o período de avaliação" username="Andreia Gomes" />
+                <form className={styles.formularioPeriodo} key={periodoValue.id} onSubmit={() => navigate("/periodos")}>
+                    <InputText typeInput="text" idInput="nomePeriodo" valueInput={periodoValue.nome_periodo} edicao={true} />
+                    <SelectTipoPeriodo nomeTipoAtual={periodoValue.tipo_periodo} />
+                    <InputText typeInput="date" idInput="dataInicioPeriodo" valueInput={periodoValue.data_inicio} edicao={true} />
+                    <InputText typeInput="date" idInput="dataFimPeriodo" valueInput={periodoValue.data_fim} edicao={true} />
+                    <Line />
+                    <Title valueTitle="Subperíodos" />
+                    {subperiodos.map((subperiodo) => {
 
-                    return (
-                        <div className={styles.listaSubperiodos} key={subperiodo.id}>
-                            <InputText typeInput="text" idInput="nomeSubperiodo" valueInput={subperiodo.nome_subperiodo} edicao={true} />
-                            <InputText typeInput="date" idInput="dataInicioSubperiodo" valueInput={subperiodo.data_inicio} edicao={true} />
-                            <InputText typeInput="date" idInput="dataFimSubperiodo" valueInput={subperiodo.data_fim} edicao={true} />
-                        </div>
-                    )
-                })}
-                <div className={styles.buttons}>
-                    <PageButton nameButton="cancelar" linkButton="/periodos" colorButton="red" />
-                    <button type="submit" className={styles.botaoAtualizar} onClick={atualizarPeriodo}>salvar</button>
-                </div>
-                <Alert variant="standard" severity="success" className={open ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso}>{mensagem}</Alert>
-            </form>
-        </div>
-    )
+                        return (
+                            <div className={styles.listaSubperiodos} key={subperiodo.id}>
+                                <InputText typeInput="text" idInput="nomeSubperiodo" valueInput={subperiodo.nome_subperiodo} edicao={true} />
+                                <InputText typeInput="date" idInput="dataInicioSubperiodo" valueInput={subperiodo.data_inicio} edicao={true} />
+                                <InputText typeInput="date" idInput="dataFimSubperiodo" valueInput={subperiodo.data_fim} edicao={true} />
+                            </div>
+                        )
+                    })}
+                    <div className={styles.buttons}>
+                        <PageButton nameButton="cancelar" linkButton="/periodos" colorButton="red" />
+                        <button type="submit" className={styles.botaoAtualizar} onClick={atualizarPeriodo}>salvar</button>
+                    </div>
+                    <Alert variant="standard" severity="success" className={open ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso}>{mensagem}</Alert>
+                </form>
+            </div>
+        )
 
+    }
 }
