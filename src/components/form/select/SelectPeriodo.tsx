@@ -8,7 +8,7 @@ type Periodo = {
 
 export function SelectPeriodo() {
 
-    let { data: periodos } = useFetch<Periodo[]>('https://back-end-sav.herokuapp.com/sav/api/periodos', 'get');
+    let { data: periodos } = useFetch<Periodo[]>('http://localhost:8080/sav/api/periodos', 'get');
 
     if (!periodos) {
         periodos = [];

@@ -21,7 +21,7 @@ export function SelectTipoPeriodo(tipoAtual?: TipoAtual) {
         } 
     }
 
-    let { data: tipos } = useFetch<TipoPeriodo[]>('https://back-end-sav.herokuapp.com/sav/api/periodos/tipos', 'get');
+    let { data: tipos } = useFetch<TipoPeriodo[]>('http://localhost:8080/sav/api/periodos/tipos', 'get');
 
     if (!tipos) {
         tipos = [];
@@ -31,7 +31,7 @@ export function SelectTipoPeriodo(tipoAtual?: TipoAtual) {
         <select className={styles.selectPeriodo}>
             <option value="default">Tipo período</option>
             {tipos.map(tipo => {
-                return <option key={tipo.id} value={tipo.id} defaultValue={!tipoAtual ? tipoAtual : ""}>{tipo.nome}</option>
+                return <option id="tipoPeriodo" key={tipo.id} value={tipo.id} defaultValue={!tipoAtual ? tipoAtual : ""}>{tipo.nome}</option>
             })}
         </select>
     );
