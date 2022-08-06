@@ -14,12 +14,6 @@
     font-size: 1.2rem;
 }
 
-.header span::before {
-    color: var(--gray-300);
-    padding: 0 0.25rem;
-    content: "|";
-}
-
 .infoHeader {
     display: flex;
     justify-content: center;

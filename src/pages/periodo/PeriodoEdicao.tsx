@@ -55,8 +55,8 @@ export function PeriodoEdicao() {
         subperiodos = periodo.subperiodos;
     }
 
-    const getValue = (dataTest: any) => {
-        return dataTest.value;
+    const getValue = (data: any) => {
+        return data.value;
     }
 
     const nomePeriodo = document.querySelector("#nomePeriodo");
@@ -79,36 +79,56 @@ export function PeriodoEdicao() {
 
         })
             .catch(() => console.log("deu erro"));
+    }
 
+    function atualizarSubperiodo(idSubperiodoAtualizacao: number) {
 
-        return (
-            <div className={styles.periodoEdicao}>
-                <Header title={`${periodoValue.nome_periodo} | edição`} subtitle="Revise e edite o período de avaliação" username="Andreia Gomes" />
-                <form className={styles.formularioPeriodo} key={periodoValue.id} onSubmit={() => navigate("/periodos")}>
-                    <InputText typeInput="text" idInput="nomePeriodo" valueInput={periodoValue.nome_periodo} edicao={true} />
-                    <SelectTipoPeriodo nomeTipoAtual={periodoValue.tipo_periodo} />
-                    <InputText typeInput="date" idInput="dataInicioPeriodo" valueInput={periodoValue.data_inicio} edicao={true} />
-                    <InputText typeInput="date" idInput="dataFimPeriodo" valueInput={periodoValue.data_fim} edicao={true} />
-                    <Line />
-                    <Title valueTitle="Subperíodos" />
-                    {subperiodos.map((subperiodo) => {
+        let nomeSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[0]);
+        let dataInicioSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[1]);
+        let dataFimSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[2]);
 
-                        return (
-                            <div className={styles.listaSubperiodos} key={subperiodo.id}>
-                                <InputText typeInput="text" idInput="nomeSubperiodo" valueInput={subperiodo.nome_subperiodo} edicao={true} />
-                                <InputText typeInput="date" idInput="dataInicioSubperiodo" valueInput={subperiodo.data_inicio} edicao={true} />
-                                <InputText typeInput="date" idInput="dataFimSubperiodo" valueInput={subperiodo.data_fim} edicao={true} />
-                            </div>
-                        )
-                    })}
-                    <div className={styles.buttons}>
-                        <PageButton nameButton="cancelar" linkButton="/periodos" colorButton="red" />
-                        <button type="submit" className={styles.botaoAtualizar} onClick={atualizarPeriodo}>salvar</button>
-                    </div>
-                    <Alert variant="standard" severity="success" className={open ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso}>{mensagem}</Alert>
-                </form>
-            </div>
-        )
+        axios.put(`http://localhost:8080/sav/api/periodos/subperiodos/${idSubperiodoAtualizacao}`, {
+
+            nome_subperiodo: nomeSubperiodo,
+            codigo_periodo: id,
+            data_inicio: dataInicioSubperiodo,
+            data_fim: dataFimSubperiodo
+
+        }).then((response) => {
+            setOpen(true)
+            setMensagem(response.data.message)
+        })
+            .catch(() => console.log("deu erro"));
 
     }
+
+    return (
+        <div className={styles.periodoEdicao}>
+            <Header title={`${periodoValue.nome_periodo}`} appendTitle="Edição" subtitle="Revise e edite o período de avaliação" username="Andreia Gomes" />
+            <form className={styles.formularioPeriodo} key={periodoValue.id} onSubmit={() => navigate("/periodos")}>
+                <InputText typeInput="text" idInput="nomePeriodo" valueInput={periodoValue.nome_periodo} edicao={true} />
+                <SelectTipoPeriodo nomeTipoAtual={periodoValue.tipo_periodo} />
+                <InputText typeInput="date" idInput="dataInicioPeriodo" valueInput={periodoValue.data_inicio} edicao={true} />
+                <InputText typeInput="date" idInput="dataFimPeriodo" valueInput={periodoValue.data_fim} edicao={true} />
+                <Line />
+                <Title valueTitle="Subperíodos" />
+                {subperiodos.map((subperiodo) => {
+
+                    return (
+                        <div className={styles.listaSubperiodos} key={subperiodo.id} id="subperiodo" onChange={() => atualizarSubperiodo(subperiodo.id)} data-key={subperiodo.id}>
+                            <InputText typeInput="text" idInput="nomeSubperiodo" valueInput={subperiodo.nome_subperiodo} edicao={true} />
+                            <InputText typeInput="date" idInput="dataInicioSubperiodo" valueInput={subperiodo.data_inicio} edicao={true} />
+                            <InputText typeInput="date" idInput="dataFimSubperiodo" valueInput={subperiodo.data_fim} edicao={true} />
+                        </div>
+                    )
+                })}
+                <div className={styles.buttons}>
+                    <PageButton nameButton="cancelar" linkButton="/periodos" colorButton="red" />
+                    <button type="submit" className={styles.botaoAtualizar} onClick={atualizarPeriodo}>salvar</button>
+                </div>
+                <Alert variant="standard" severity="success" className={open ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso}>{mensagem}</Alert>
+            </form>
+        </div>
+    )
+
 }

@@ -2,3 +2,16 @@
     font-size: 1.8rem;
     margin-bottom: 1rem;
 }
+
+.append {
+    font-weight: 100;
+    color: var(--gray-500);
+}
+
+.append::before {
+    content: " | ";
+}
+
+.notAppend {
+    display: none;
+}
