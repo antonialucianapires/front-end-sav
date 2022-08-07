@@ -6,20 +6,7 @@ type TipoPeriodo = {
     nome: string;
 }
 
-type TipoAtual = {
-    nomeTipoAtual?: string;
-}
-
-export function SelectTipoPeriodo(tipoAtual?: TipoAtual) {
-
-    if (tipoAtual) {
-
-        if (tipoAtual.nomeTipoAtual) {
-            return (<select className={styles.selectPeriodo}>
-                <option key={tipoAtual.nomeTipoAtual} value={tipoAtual.nomeTipoAtual}>{tipoAtual.nomeTipoAtual}</option>
-            </select>)
-        } 
-    }
+export function SelectTipoPeriodo(props: any) {
 
     let { data: tipos } = useFetch<TipoPeriodo[]>('http://localhost:8080/sav/api/periodos/tipos', 'get');
 
@@ -28,10 +15,13 @@ export function SelectTipoPeriodo(tipoAtual?: TipoAtual) {
     }
 
     return (
-        <select className={styles.selectPeriodo}>
+        <select tabIndex={props.tabIndex ? props.tabIndex : undefined} aria-disabled={props.somenteLeitura ? props.somenteLeitura : undefined} className={props.somenteLeitura ? styles.readOnly : styles.selectPeriodo} id="tiposPeriodo" onChange={props.evento}>
             <option value="default">Tipo período</option>
             {tipos.map(tipo => {
-                return <option id="tipoPeriodo" key={tipo.id} value={tipo.id} defaultValue={!tipoAtual ? tipoAtual : ""}>{tipo.nome}</option>
+                if (props.nomeTipoAtual !== undefined && tipo.nome === props.nomeTipoAtual) {
+                    return <option id="tipoPeriodo" key={tipo.id} value={tipo.nome} defaultValue={tipo.nome}  selected={true}>{tipo.nome}</option>
+                }
+                return <option id="tipoPeriodo" key={tipo.id} value={tipo.nome}>{tipo.nome}</option>
             })}
         </select>
     );

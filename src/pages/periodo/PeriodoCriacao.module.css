@@ -1,4 +1,4 @@
-.periodoEdicao {
+.periodoCriacao {
     max-width: 70rem;
     padding: 1rem;
 }
@@ -10,7 +10,17 @@
     margin-top: 2rem;
 }
 
+.informacoesPeriodo {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
 .listaSubperiodos {
+    display: block;
+}
+
+.inputSubperiodo {
     display: flex;
     gap: 1rem;
 }
@@ -24,7 +34,7 @@
     gap: 1rem;
 }
 
-.botaoAtualizar {
+.botaoSalvar {
     border: none;
     text-align: center;
     font-size: 1.3rem;
@@ -39,10 +49,6 @@
     cursor: pointer;
 }
 
-.mostrarAlertaSucesso {
-    display: block;
-}
-
-.naoMostrarAlertaSucesso {
-    display: none !important;
+.botaoSalvarNone {
+    display: none;
 }

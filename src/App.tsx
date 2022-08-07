@@ -11,6 +11,7 @@ import { Turmas } from './pages/Turmas';
 import { Configuracao } from './pages/Configuracao';
 import { PeriodoVisualizacao } from './pages/periodo/PeriodoVisualizacao';
 import { PeriodoEdicao } from './pages/periodo/PeriodoEdicao';
+import { PeriodoCriacao } from './pages/periodo/PeriodoCriacao';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
             <Route path='/configuracoes' element={<Configuracao />} />
             <Route path='/periodos/:id/resumo' element={<PeriodoVisualizacao />} />
             <Route path='/periodos/:id/edicao' element={<PeriodoEdicao />} />
+            <Route path='/periodos/novo' element={<PeriodoCriacao />} />
           </Routes>
         </Router>
       </div>

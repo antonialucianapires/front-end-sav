@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Alert, IconButton } from '@mui/material';
 import { X } from 'phosphor-react';
+import { PageButton } from '../components/form/button/PageButton';
 
 type PeriodoType = {
     id: number;
@@ -62,6 +63,7 @@ export function Periodo() {
             <form className={styles.formSearch} action="">
                 <InputSearch inputName={"pesquisaPeriodo"} messagePlaceholder={"Buscar período por título"} />
                 <SelectPeriodo />
+                <PageButton nameButton="criar período" linkButton="/periodos/novo" colorButton="blue" />
             </form>
             <section className={styles.listaPeriodos}>
                 {periodos.map(periodo => {
