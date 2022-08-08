@@ -6,8 +6,8 @@ import { CardPeriodo } from '../components/card/infodash/periodo/CardPeriodo';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Alert } from '@mui/material';
-import { X } from 'phosphor-react';
 import { PageButton } from '../components/form/button/PageButton';
+const url = import.meta.env.VITE_BASE_URL;
 
 type PeriodoType = {
     id: number;
@@ -17,14 +17,12 @@ type PeriodoType = {
 
 export function Periodo() {
 
-    const api =  "http://localhost:8080/sav/api"
-    
     const [periodos, setPeriodos] = useState<PeriodoType[]>([]);
     const [open, setOpen] = useState(false);
     const [mensagem, setMensagem] = useState("");
 
     useEffect(() => {
-        axios.get(`${api}/periodos`)
+        axios.get(`${url}/periodos`)
         .then((response) => {
             setPeriodos(response.data.payload)
         })
@@ -37,7 +35,7 @@ export function Periodo() {
     
 
     function deletarPeriodo(id: number) {
-       axios.delete(`${api}/periodos/${id}`).then(reponse => {
+       axios.delete(`${url}/periodos/${id}`).then(reponse => {
         setPeriodos(periodos.filter(periodo => periodo.id !== id))
        }).catch(error => {
             setOpen(true)

@@ -9,6 +9,7 @@ import { Line } from "../../components/others/Line";
 import { Title } from "../../components/others/Title";
 import { ListFunction } from "../../components/util/ListFunction";
 import styles from "./PeriodoCriacao.module.css";
+const url = import.meta.env.VITE_BASE_URL;
 
 enum tiposPeriodo {
     BIMESTRAL = "BIMESTRAL",
@@ -93,7 +94,7 @@ export function PeriodoCriacao() {
                 subperiodos: subperiodosLista
             }
 
-            axios.post(`http://localhost:8080/sav/api/periodos`, periodo)
+            axios.post(`${url}/periodos`, periodo)
                 .then((response) => {
                     setOpenSucesso(true)
                     setMensagem(response.data.message)

@@ -1,5 +1,6 @@
 import { useFetch } from '../../../hooks/useFetch';
-import styles from './Select.module.css'
+import styles from './Select.module.css';
+const url = import.meta.env.VITE_BASE_URL;
 
 type TipoPeriodo = {
     id: number;
@@ -8,7 +9,7 @@ type TipoPeriodo = {
 
 export function SelectTipoPeriodo(props: any) {
 
-    let { data: tipos } = useFetch<TipoPeriodo[]>('http://localhost:8080/sav/api/periodos/tipos', 'get');
+    let { data: tipos } = useFetch<TipoPeriodo[]>(`${url}/periodos/tipos`, 'get');
 
     if (!tipos) {
         tipos = [];

@@ -10,6 +10,7 @@ import { useFetch } from "../../hooks/useFetch";
 import styles from "./PeriodoEdicao.module.css";
 import { Alert } from "@mui/material";
 import { useState } from "react";
+const url = import.meta.env.VITE_BASE_URL;
 
 type Subperiodo = {
     id: number;
@@ -38,7 +39,7 @@ export function PeriodoEdicao() {
 
     const { id } = useParams();
 
-    let { data: periodo } = useFetch<PeriodoType>(`http://localhost:8080/sav/api/periodos/${id}?com_subperiodos=true`, 'get');
+    let { data: periodo } = useFetch<PeriodoType>(`${url}/periodos/${id}?com_subperiodos=true`, 'get');
 
     let periodoValue: PeriodoType = {
         id: 0,
@@ -74,7 +75,7 @@ export function PeriodoEdicao() {
             data_fim: getValue(dataFimPeriodo)
         };
 
-        axios.put(`http://localhost:8080/sav/api/periodos/${id}`, periodoAtualizacao).then((response) => {
+        axios.put(`${url}/periodos/${id}`, periodoAtualizacao).then((response) => {
             setOpenSucesso(true)
             setMensagem(response.data.message)
 
@@ -91,7 +92,7 @@ export function PeriodoEdicao() {
         let dataInicioSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[1]);
         let dataFimSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[2]);
 
-        axios.put(`http://localhost:8080/sav/api/periodos/subperiodos/${idSubperiodoAtualizacao}`, {
+        axios.put(`${url}/periodos/subperiodos/${idSubperiodoAtualizacao}`, {
 
             nome_subperiodo: nomeSubperiodo,
             codigo_periodo: id,
