@@ -133,8 +133,8 @@ export function PeriodoEdicao() {
                     <PageButton nameButton="cancelar" linkButton="/periodos" colorButton="red" />
                     <button type="submit" className={styles.botaoAtualizar} onClick={atualizarPeriodo}>salvar</button>
                 </div>
-                <Alert variant="standard" severity="success" className={openSucesso ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso}>{mensagem}</Alert>
-            <Alert variant="standard" severity="error" className={openErro ? styles.mostrarAlertaErro : styles.naoMostrarAlertaErro}>{mensagem}</Alert>
+                <Alert variant="standard" severity="success" className={openSucesso ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso} onClose={() => {setOpenSucesso(false)}}>{mensagem}</Alert>
+            <Alert variant="standard" severity="error" className={openErro ? styles.mostrarAlertaErro : styles.naoMostrarAlertaErro} onClose={() => {setOpenErro(false)}}>{mensagem}</Alert>
             </form>
         </div>
     )

@@ -100,7 +100,13 @@ export function PeriodoCriacao() {
 
                 }).catch((error) => {
                     setOpenErro(true)
-                    setMensagem(error.response.data.message)
+
+                    if(error.response.data.status === 500) {
+                        setMensagem(error.response.data.message + " Verifique se preencheu todos os campos corretamente e tente novamente.")
+                    } else {
+                        setMensagem(error.response.data.message)
+                    }
+                    
                 });
         }
 
@@ -135,8 +141,8 @@ export function PeriodoCriacao() {
                     <button type="button" className={styles.botaoSalvar} onClick={criarNovoPeriodo}>salvar</button>
                 </div>
             </form>
-            <Alert variant="standard" severity="success" className={openSucesso ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso}>{mensagem}</Alert>
-            <Alert variant="standard" severity="error" className={openErro ? styles.mostrarAlertaErro : styles.naoMostrarAlertaErro}>{mensagem}</Alert>
+            <Alert variant="standard" severity="success" className={openSucesso ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso} onClose={() => {setOpenSucesso(false)}}>{mensagem}</Alert>
+            <Alert variant="standard" severity="error" className={openErro ? styles.mostrarAlertaErro : styles.naoMostrarAlertaErro} onClose={() => {setOpenErro(false)}}>{mensagem}</Alert>
         </div>
     )
 
