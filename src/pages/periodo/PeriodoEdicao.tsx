@@ -36,6 +36,7 @@ export function PeriodoEdicao() {
     const [openErro, setOpenErro] = useState(false);
     const [mensagem, setMensagem] = useState("");
     const navigate = useNavigate();
+    const [option, setOption] = useState("0");
 
     const { id } = useParams();
 
@@ -66,6 +67,16 @@ export function PeriodoEdicao() {
     const dataFimPeriodo = document.querySelector("#dataFimPeriodo");
     let tipo = capturarTipoPeriodo();
 
+    function handleChange(event: any) {
+        setOption(event.target.value)
+    }
+
+    function capturarTipoPeriodo() {
+        let tiposPeriodo = document.querySelector("select");
+        let opcao = tiposPeriodo?.options[tiposPeriodo?.selectedIndex];
+        let tipo = opcao?.getAttribute("data-tipo");
+        return tipo;
+    }
 
     function atualizarPeriodo() {
 
@@ -118,7 +129,7 @@ export function PeriodoEdicao() {
             <Header title={`${periodoValue.nome_periodo}`} appendTitle="Edição" subtitle="Revise e edite o período de avaliação" username="Andreia Gomes" />
             <form className={styles.formularioPeriodo} key={periodoValue.id}>
                 <InputText typeInput="text" idInput="nomePeriodo" valueInput={periodoValue.nome_periodo} edicao={true} />
-                <SelectTipoPeriodo nomeTipoAtual={periodoValue.tipo_periodo} />
+                <SelectTipoPeriodo nomeTipoAtual={periodoValue.tipo_periodo} evento={handleChange} />
                 <InputText typeInput="date" idInput="dataInicioPeriodo" valueInput={periodoValue.data_inicio} edicao={true} />
                 <InputText typeInput="date" idInput="dataFimPeriodo" valueInput={periodoValue.data_fim} edicao={true} />
                 <Line />
@@ -143,10 +154,4 @@ export function PeriodoEdicao() {
         </div>
     )
 
-    function capturarTipoPeriodo() {
-        let tiposPeriodo = document.querySelector("select");
-        let opcao = tiposPeriodo?.options[tiposPeriodo?.selectedIndex];
-        let tipo = opcao?.getAttribute("data-tipo");
-        return tipo;
-    }
 }
