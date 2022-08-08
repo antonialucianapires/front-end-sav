@@ -1,6 +1,7 @@
 import { Alert } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { PageButton } from "../../components/form/button/PageButton";
 import { InputText } from "../../components/form/input/InputText";
 import { SelectTipoPeriodo } from "../../components/form/select/SelectTipoPeriodo";
@@ -39,6 +40,7 @@ export function PeriodoCriacao() {
     const [openSucesso, setOpenSucesso] = useState(false);
     const [openErro, setOpenErro] = useState(false);
     const [mensagem, setMensagem] = useState("");
+    const navigate = useNavigate();
 
     function handleChange(event: any) {
         setOption(event.target.value)
@@ -98,16 +100,17 @@ export function PeriodoCriacao() {
                 .then((response) => {
                     setOpenSucesso(true)
                     setMensagem(response.data.message)
+                    setTimeout(() => navigate("/periodos"), 4000)
 
                 }).catch((error) => {
                     setOpenErro(true)
 
-                    if(error.response.data.status === 500) {
+                    if (error.response.data.status === 500) {
                         setMensagem(error.response.data.message + " Verifique se preencheu todos os campos corretamente e tente novamente.")
                     } else {
                         setMensagem(error.response.data.message)
                     }
-                    
+
                 });
         }
 
@@ -142,8 +145,8 @@ export function PeriodoCriacao() {
                     <button type="button" className={styles.botaoSalvar} onClick={criarNovoPeriodo}>salvar</button>
                 </div>
             </form>
-            <Alert variant="standard" severity="success" className={openSucesso ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso} onClose={() => {setOpenSucesso(false)}}>{mensagem}</Alert>
-            <Alert variant="standard" severity="error" className={openErro ? styles.mostrarAlertaErro : styles.naoMostrarAlertaErro} onClose={() => {setOpenErro(false)}}>{mensagem}</Alert>
+            <Alert variant="standard" severity="success" className={openSucesso ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso} onClose={() => { setOpenSucesso(false) }}>{mensagem}</Alert>
+            <Alert variant="standard" severity="error" className={openErro ? styles.mostrarAlertaErro : styles.naoMostrarAlertaErro} onClose={() => { setOpenErro(false) }}>{mensagem}</Alert>
         </div>
     )
 

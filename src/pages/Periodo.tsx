@@ -18,31 +18,34 @@ type PeriodoType = {
 export function Periodo() {
 
     const [periodos, setPeriodos] = useState<PeriodoType[]>([]);
-    const [open, setOpen] = useState(false);
+    const [openSucesso, setOpenSucesso] = useState(false);
+    const [openErro, setOpenErro] = useState(false);
     const [mensagem, setMensagem] = useState("");
 
     useEffect(() => {
         axios.get(`${url}/periodos`)
-        .then((response) => {
-            setPeriodos(response.data.payload)
-        })
-        .catch((error) => {
-            setOpen(true)
-            setMensagem(error.response.data.message)
-        })
+            .then((response) => {
+                setPeriodos(response.data.payload)
+            })
+            .catch((error) => {
+                setOpen(true)
+                setMensagem(error.response.data.message)
+            })
     }, []);
 
-    
+
 
     function deletarPeriodo(id: number) {
-       axios.delete(`${url}/periodos/${id}`).then(reponse => {
-        setPeriodos(periodos.filter(periodo => periodo.id !== id))
-       }).catch(error => {
-            setOpen(true)
+        axios.delete(`${url}/periodos/${id}`).then(response => {
+            setPeriodos(periodos.filter(periodo => periodo.id !== id))
+            setOpenSucesso(true)
+            setMensagem(response.data.message)
+        }).catch(error => {
+            setOpenErro(true)
             setMensagem(error.response.data.message)
-       })
-        
-        
+        })
+
+
     }
 
     return (
@@ -58,7 +61,8 @@ export function Periodo() {
                     return <CardPeriodo key={periodo.id} nome={periodo.nome_periodo} status={periodo.status} idPeriodo={periodo.id} eventoExcluir={deletarPeriodo} />
                 })}
             </section>
-            <Alert variant="standard" severity="error" className={open ? styles.mostrarAlerta : styles.naoMostrarAlerta} onClose={() => {setOpen(false)}}>{mensagem}</Alert>
+            <Alert variant="standard" severity="success" className={openSucesso ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso} onClose={() => { setOpenSucesso(false) }}>{mensagem}</Alert>
+            <Alert variant="standard" severity="error" className={openErro ? styles.mostrarAlertaErro : styles.naoMostrarAlertaErro} onClose={() => { setOpenErro(false) }}>{mensagem}</Alert>
         </div>
     );
 }
