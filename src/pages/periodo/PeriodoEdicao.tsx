@@ -31,7 +31,8 @@ type PeriodoType = {
 
 export function PeriodoEdicao() {
 
-    const [open, setOpen] = useState(false);
+    const [openSucesso, setOpenSucesso] = useState(false);
+    const [openErro, setOpenErro] = useState(false);
     const [mensagem, setMensagem] = useState("");
     const navigate = useNavigate();
 
@@ -74,11 +75,14 @@ export function PeriodoEdicao() {
         };
 
         axios.put(`http://localhost:8080/sav/api/periodos/${id}`, periodoAtualizacao).then((response) => {
-            setOpen(true)
+            setOpenSucesso(true)
             setMensagem(response.data.message)
 
         })
-            .catch(() => console.log("deu erro"));
+            .catch((error) => {
+                setOpenErro(true)
+                setMensagem(error.response.data.message)
+            });
     }
 
     function atualizarSubperiodo(idSubperiodoAtualizacao: number) {
@@ -95,10 +99,13 @@ export function PeriodoEdicao() {
             data_fim: dataFimSubperiodo
 
         }).then((response) => {
-            setOpen(true)
+            setOpenSucesso(true)
             setMensagem(response.data.message)
         })
-            .catch(() => console.log("deu erro"));
+            .catch((error) => {
+                setOpenErro(true)
+                setMensagem(error.response.data.message)
+            });
 
     }
 
@@ -126,7 +133,8 @@ export function PeriodoEdicao() {
                     <PageButton nameButton="cancelar" linkButton="/periodos" colorButton="red" />
                     <button type="submit" className={styles.botaoAtualizar} onClick={atualizarPeriodo}>salvar</button>
                 </div>
-                <Alert variant="standard" severity="success" className={open ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso}>{mensagem}</Alert>
+                <Alert variant="standard" severity="success" className={openSucesso ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso}>{mensagem}</Alert>
+            <Alert variant="standard" severity="error" className={openErro ? styles.mostrarAlertaErro : styles.naoMostrarAlertaErro}>{mensagem}</Alert>
             </form>
         </div>
     )

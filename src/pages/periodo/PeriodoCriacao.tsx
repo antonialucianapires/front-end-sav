@@ -1,3 +1,4 @@
+import { Alert } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 import { PageButton } from "../../components/form/button/PageButton";
@@ -34,6 +35,9 @@ let lista = ListFunction(0);
 export function PeriodoCriacao() {
 
     const [option, setOption] = useState("0");
+    const [openSucesso, setOpenSucesso] = useState(false);
+    const [openErro, setOpenErro] = useState(false);
+    const [mensagem, setMensagem] = useState("");
 
     function handleChange(event: any) {
         setOption(event.target.value)
@@ -89,13 +93,15 @@ export function PeriodoCriacao() {
                 subperiodos: subperiodosLista
             }
 
-            axios.post(`http://localhost:8080/sav/api/periodos`, periodo).then((response) => {
-                console.log(response.data)
+            axios.post(`http://localhost:8080/sav/api/periodos`, periodo)
+                .then((response) => {
+                    setOpenSucesso(true)
+                    setMensagem(response.data.message)
 
-            })
-                .catch(() => console.log("deu erro"));
-        } else {
-            console.log("precisa preencher todos os campos");
+                }).catch((error) => {
+                    setOpenErro(true)
+                    setMensagem(error.response.data.message)
+                });
         }
 
     }
@@ -104,7 +110,7 @@ export function PeriodoCriacao() {
     return (
         <div className={styles.periodoCriacao}>
             <Header title="Período" appendTitle="Criação" subtitle="Criei um novo período escolar e seus respectivos subperíodos" username="Andreia Gomes" />
-            <form className={styles.formularioPeriodo} key="formularioPeriodo" onSubmit={criarNovoPeriodo}>
+            <form className={styles.formularioPeriodo} key="formularioPeriodo">
                 <InputText typeInput="text" idInput="nomePeriodo" edicao={true} placeholderInput="escreva o título do período" valueInput="" />
                 <div className={styles.informacoesPeriodo}>
                     <SelectTipoPeriodo evento={handleChange} somenteLeitura={false} />
@@ -126,9 +132,11 @@ export function PeriodoCriacao() {
                 </div>
                 <div className={lista.length > 0 ? styles.buttons : styles.botaoSalvarNone}>
                     <PageButton nameButton="cancelar" linkButton="/periodos" colorButton="red" />
-                    <button type="submit" className={styles.botaoSalvar}>salvar</button>
+                    <button type="button" className={styles.botaoSalvar} onClick={criarNovoPeriodo}>salvar</button>
                 </div>
             </form>
+            <Alert variant="standard" severity="success" className={openSucesso ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso}>{mensagem}</Alert>
+            <Alert variant="standard" severity="error" className={openErro ? styles.mostrarAlertaErro : styles.naoMostrarAlertaErro}>{mensagem}</Alert>
         </div>
     )
 
