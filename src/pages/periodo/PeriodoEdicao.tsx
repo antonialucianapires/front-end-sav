@@ -64,13 +64,14 @@ export function PeriodoEdicao() {
     const nomePeriodo = document.querySelector("#nomePeriodo");
     const dataInicioPeriodo = document.querySelector("#dataInicioPeriodo");
     const dataFimPeriodo = document.querySelector("#dataFimPeriodo");
+    let tipo = capturarTipoPeriodo();
 
 
     function atualizarPeriodo() {
 
         const periodoAtualizacao = {
             nome_periodo: String(getValue(nomePeriodo)),
-            tipo_periodo: 2,
+            tipo_periodo: Number(tipo),
             data_inicio: getValue(dataInicioPeriodo),
             data_fim: getValue(dataFimPeriodo)
         };
@@ -78,6 +79,7 @@ export function PeriodoEdicao() {
         axios.put(`${url}/periodos/${id}`, periodoAtualizacao).then((response) => {
             setOpenSucesso(true)
             setMensagem(response.data.message)
+            setTimeout(() => navigate("/periodos"), 4000)
 
         })
             .catch((error) => {
@@ -91,6 +93,7 @@ export function PeriodoEdicao() {
         let nomeSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[0]);
         let dataInicioSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[1]);
         let dataFimSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[2]);
+        
 
         axios.put(`${url}/periodos/subperiodos/${idSubperiodoAtualizacao}`, {
 
@@ -113,7 +116,7 @@ export function PeriodoEdicao() {
     return (
         <div className={styles.periodoEdicao}>
             <Header title={`${periodoValue.nome_periodo}`} appendTitle="Edição" subtitle="Revise e edite o período de avaliação" username="Andreia Gomes" />
-            <form className={styles.formularioPeriodo} key={periodoValue.id} onSubmit={() => navigate("/periodos")}>
+            <form className={styles.formularioPeriodo} key={periodoValue.id}>
                 <InputText typeInput="text" idInput="nomePeriodo" valueInput={periodoValue.nome_periodo} edicao={true} />
                 <SelectTipoPeriodo nomeTipoAtual={periodoValue.tipo_periodo} />
                 <InputText typeInput="date" idInput="dataInicioPeriodo" valueInput={periodoValue.data_inicio} edicao={true} />
@@ -132,7 +135,7 @@ export function PeriodoEdicao() {
                 })}
                 <div className={styles.buttons}>
                     <PageButton nameButton="cancelar" linkButton="/periodos" colorButton="red" />
-                    <button type="submit" className={styles.botaoAtualizar} onClick={atualizarPeriodo}>salvar</button>
+                    <button type="button" className={styles.botaoAtualizar} onClick={atualizarPeriodo}>salvar</button>
                 </div>
                 <Alert variant="standard" severity="success" className={openSucesso ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso} onClose={() => {setOpenSucesso(false)}}>{mensagem}</Alert>
             <Alert variant="standard" severity="error" className={openErro ? styles.mostrarAlertaErro : styles.naoMostrarAlertaErro} onClose={() => {setOpenErro(false)}}>{mensagem}</Alert>
@@ -140,4 +143,10 @@ export function PeriodoEdicao() {
         </div>
     )
 
+    function capturarTipoPeriodo() {
+        let tiposPeriodo = document.querySelector("select");
+        let opcao = tiposPeriodo?.options[tiposPeriodo?.selectedIndex];
+        let tipo = opcao?.getAttribute("data-tipo");
+        return tipo;
+    }
 }

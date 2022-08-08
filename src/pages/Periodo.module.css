@@ -16,11 +16,18 @@
     gap: 1.5rem;
 }
 
-.mostrarAlerta {
+.mostrarAlertaSucesso {
     display: block;
-    margin: 20px 0;
 }
 
-.naoMostrarAlerta {
+.naoMostrarAlertaSucesso {
+    display: none !important;
+}
+
+.mostrarAlertaErro {
+    display: block;
+}
+
+.naoMostrarAlertaErro {
     display: none !important;
 }
