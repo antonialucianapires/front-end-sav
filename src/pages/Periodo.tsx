@@ -3,10 +3,9 @@ import { Header } from "../components/header/Header";
 import { InputSearch } from '../components/form/input/InputSearch';
 import { SelectPeriodo } from '../components/form/select/SelectPeriodo';
 import { CardPeriodo } from '../components/card/infodash/periodo/CardPeriodo';
-import { useFetch } from '../hooks/useFetch';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Alert, IconButton } from '@mui/material';
+import { Alert } from '@mui/material';
 import { X } from 'phosphor-react';
 import { PageButton } from '../components/form/button/PageButton';
 
@@ -15,11 +14,6 @@ type PeriodoType = {
     nome_periodo: string;
     status: string;
 };
-
-type ResponseDefaultMessage = {
-
-}
-
 
 export function Periodo() {
 
@@ -35,7 +29,8 @@ export function Periodo() {
             setPeriodos(response.data.payload)
         })
         .catch((error) => {
-            console.log("erro: " + error.payload)
+            setOpen(true)
+            setMensagem(error.response.data.message)
         })
     }, []);
 
@@ -52,11 +47,6 @@ export function Periodo() {
         
     }
 
-    function ocultarAlerta() {
-        setOpen(false)
-    }
-
-
     return (
         <div className={styles.periodo}>
             <Header title="Períodos" subtitle="Gerencie períodos e subperíodos do processo de avaliação" username="Andreia Gomes" />
@@ -70,7 +60,7 @@ export function Periodo() {
                     return <CardPeriodo key={periodo.id} nome={periodo.nome_periodo} status={periodo.status} idPeriodo={periodo.id} eventoExcluir={deletarPeriodo} />
                 })}
             </section>
-           <Alert variant="standard" severity="error" className={open ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso}>{mensagem}<X onClick={ocultarAlerta} size={20} cursor="pointer"/></Alert>
+            <Alert variant="standard" severity="error" className={open ? styles.mostrarAlerta : styles.naoMostrarAlerta} onClose={() => {setOpen(false)}}>{mensagem}</Alert>
         </div>
     );
 }
