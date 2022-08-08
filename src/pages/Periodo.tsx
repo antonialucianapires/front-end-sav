@@ -28,7 +28,7 @@ export function Periodo() {
                 setPeriodos(response.data.payload)
             })
             .catch((error) => {
-                setOpen(true)
+                setOpenErro(true)
                 setMensagem(error.response.data.message)
             })
     }, []);

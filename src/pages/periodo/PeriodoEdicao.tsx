@@ -69,6 +69,7 @@ export function PeriodoEdicao() {
 
     function handleChange(event: any) {
         setOption(event.target.value)
+        console.log(option)
     }
 
     function capturarTipoPeriodo() {
