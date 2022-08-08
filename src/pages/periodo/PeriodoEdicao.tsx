@@ -10,6 +10,7 @@ import { useFetch } from "../../hooks/useFetch";
 import styles from "./PeriodoEdicao.module.css";
 import { Alert } from "@mui/material";
 import { useState } from "react";
+const url = import.meta.env.VITE_BASE_URL;
 
 type Subperiodo = {
     id: number;
@@ -31,13 +32,14 @@ type PeriodoType = {
 
 export function PeriodoEdicao() {
 
-    const [open, setOpen] = useState(false);
+    const [openSucesso, setOpenSucesso] = useState(false);
+    const [openErro, setOpenErro] = useState(false);
     const [mensagem, setMensagem] = useState("");
     const navigate = useNavigate();
 
     const { id } = useParams();
 
-    let { data: periodo } = useFetch<PeriodoType>(`http://localhost:8080/sav/api/periodos/${id}?com_subperiodos=true`, 'get');
+    let { data: periodo } = useFetch<PeriodoType>(`${url}/periodos/${id}?com_subperiodos=true`, 'get');
 
     let periodoValue: PeriodoType = {
         id: 0,
@@ -73,12 +75,15 @@ export function PeriodoEdicao() {
             data_fim: getValue(dataFimPeriodo)
         };
 
-        axios.put(`http://localhost:8080/sav/api/periodos/${id}`, periodoAtualizacao).then((response) => {
-            setOpen(true)
+        axios.put(`${url}/periodos/${id}`, periodoAtualizacao).then((response) => {
+            setOpenSucesso(true)
             setMensagem(response.data.message)
 
         })
-            .catch(() => console.log("deu erro"));
+            .catch((error) => {
+                setOpenErro(true)
+                setMensagem(error.response.data.message)
+            });
     }
 
     function atualizarSubperiodo(idSubperiodoAtualizacao: number) {
@@ -87,7 +92,7 @@ export function PeriodoEdicao() {
         let dataInicioSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[1]);
         let dataFimSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[2]);
 
-        axios.put(`http://localhost:8080/sav/api/periodos/subperiodos/${idSubperiodoAtualizacao}`, {
+        axios.put(`${url}/periodos/subperiodos/${idSubperiodoAtualizacao}`, {
 
             nome_subperiodo: nomeSubperiodo,
             codigo_periodo: id,
@@ -95,10 +100,13 @@ export function PeriodoEdicao() {
             data_fim: dataFimSubperiodo
 
         }).then((response) => {
-            setOpen(true)
+            setOpenSucesso(true)
             setMensagem(response.data.message)
         })
-            .catch(() => console.log("deu erro"));
+            .catch((error) => {
+                setOpenErro(true)
+                setMensagem(error.response.data.message)
+            });
 
     }
 
@@ -126,7 +134,8 @@ export function PeriodoEdicao() {
                     <PageButton nameButton="cancelar" linkButton="/periodos" colorButton="red" />
                     <button type="submit" className={styles.botaoAtualizar} onClick={atualizarPeriodo}>salvar</button>
                 </div>
-                <Alert variant="standard" severity="success" className={open ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso}>{mensagem}</Alert>
+                <Alert variant="standard" severity="success" className={openSucesso ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso} onClose={() => {setOpenSucesso(false)}}>{mensagem}</Alert>
+            <Alert variant="standard" severity="error" className={openErro ? styles.mostrarAlertaErro : styles.naoMostrarAlertaErro} onClose={() => {setOpenErro(false)}}>{mensagem}</Alert>
             </form>
         </div>
     )

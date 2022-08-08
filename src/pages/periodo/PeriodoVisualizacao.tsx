@@ -7,6 +7,7 @@ import { Line } from "../../components/others/Line";
 import { Title } from "../../components/others/Title";
 import { PageButton } from "../../components/form/button/PageButton";
 import { useParams } from "react-router-dom";
+const url = import.meta.env.VITE_BASE_URL;
 
 type Subperiodo = {
     id: number;
@@ -30,7 +31,7 @@ export function PeriodoVisualizacao() {
 
     const { id } = useParams();
 
-    let { data: periodo } = useFetch<PeriodoType>(`http://localhost:8080/sav/api/periodos/${id}?com_subperiodos=true`, 'get');
+    let { data: periodo } = useFetch<PeriodoType>(`${url}/periodos/${id}?com_subperiodos=true`, 'get');
 
     let periodoValue: PeriodoType = {
         id: 0,

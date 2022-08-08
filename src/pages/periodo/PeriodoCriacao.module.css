@@ -52,3 +52,19 @@
 .botaoSalvarNone {
     display: none;
 }
+
+.mostrarAlertaSucesso {
+    display: block;
+}
+
+.naoMostrarAlertaSucesso {
+    display: none !important;
+}
+
+.mostrarAlertaErro {
+    display: block;
+}
+
+.naoMostrarAlertaErro {
+    display: none !important;
+}

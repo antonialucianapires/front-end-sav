@@ -4,8 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "local": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build --mode production",
     "preview": "vite preview",
     "mocks": "mocks-server"
   },

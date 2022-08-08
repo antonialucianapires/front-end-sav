@@ -11,7 +11,7 @@ type infosCard = {
 
 export function Home() {
 
-    const { data: repositories } = useFetch<infosCard[]>('http://localhost:3100/api/sav/v1/resume');
+    const { data: repositories } = useFetch<infosCard[]>('http://localhost:3100/api/sav/v1/resume', 'get');
 
     return (
         <div className={styles.home}>

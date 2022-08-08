@@ -3,12 +3,11 @@ import { Header } from "../components/header/Header";
 import { InputSearch } from '../components/form/input/InputSearch';
 import { SelectPeriodo } from '../components/form/select/SelectPeriodo';
 import { CardPeriodo } from '../components/card/infodash/periodo/CardPeriodo';
-import { useFetch } from '../hooks/useFetch';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Alert, IconButton } from '@mui/material';
-import { X } from 'phosphor-react';
+import { Alert } from '@mui/material';
 import { PageButton } from '../components/form/button/PageButton';
+const url = import.meta.env.VITE_BASE_URL;
 
 type PeriodoType = {
     id: number;
@@ -16,33 +15,27 @@ type PeriodoType = {
     status: string;
 };
 
-type ResponseDefaultMessage = {
-
-}
-
-
 export function Periodo() {
 
-    const api =  "http://localhost:8080/sav/api"
-    
     const [periodos, setPeriodos] = useState<PeriodoType[]>([]);
     const [open, setOpen] = useState(false);
     const [mensagem, setMensagem] = useState("");
 
     useEffect(() => {
-        axios.get(`${api}/periodos`)
+        axios.get(`${url}/periodos`)
         .then((response) => {
             setPeriodos(response.data.payload)
         })
         .catch((error) => {
-            console.log("erro: " + error.payload)
+            setOpen(true)
+            setMensagem(error.response.data.message)
         })
     }, []);
 
     
 
     function deletarPeriodo(id: number) {
-       axios.delete(`${api}/periodos/${id}`).then(reponse => {
+       axios.delete(`${url}/periodos/${id}`).then(reponse => {
         setPeriodos(periodos.filter(periodo => periodo.id !== id))
        }).catch(error => {
             setOpen(true)
@@ -51,11 +44,6 @@ export function Periodo() {
         
         
     }
-
-    function ocultarAlerta() {
-        setOpen(false)
-    }
-
 
     return (
         <div className={styles.periodo}>
@@ -70,7 +58,7 @@ export function Periodo() {
                     return <CardPeriodo key={periodo.id} nome={periodo.nome_periodo} status={periodo.status} idPeriodo={periodo.id} eventoExcluir={deletarPeriodo} />
                 })}
             </section>
-           <Alert variant="standard" severity="error" className={open ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso}>{mensagem}<X onClick={ocultarAlerta} size={20} cursor="pointer"/></Alert>
+            <Alert variant="standard" severity="error" className={open ? styles.mostrarAlerta : styles.naoMostrarAlerta} onClose={() => {setOpen(false)}}>{mensagem}</Alert>
         </div>
     );
 }
