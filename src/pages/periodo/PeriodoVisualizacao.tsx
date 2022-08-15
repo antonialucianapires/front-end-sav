@@ -30,7 +30,7 @@ type PeriodoType = {
 export function PeriodoVisualizacao() {
 
     const { id } = useParams();
-
+    let indexSubperiodo = 0;
     let { data: periodo } = useFetch<PeriodoType>(`${url}/periodos/${id}?com_subperiodos=true`, 'get');
 
     let periodoValue: PeriodoType = {
@@ -60,8 +60,10 @@ export function PeriodoVisualizacao() {
                 <Line />
                 <Title valueTitle="Subperíodos" />
                 {subperiodos.map((subperiodo) => {
+                    indexSubperiodo++;
                     return (
                         <div className={styles.listaSubperiodos} key={subperiodo.id}>
+                            <p className={styles.tituloSubperiodo}>{`${indexSubperiodo}° subperíodo`}</p>
                             <InputText typeInput="text" idInput="nomeSubperiodo" valueInput={subperiodo.nome_subperiodo} edicao={false} />
                             <InputText typeInput="text" idInput="dataInicioSubperiodo" valueInput={subperiodo.data_inicio} edicao={false} />
                             <InputText typeInput="text" idInput="dataFimSubperiodo" valueInput={subperiodo.data_fim} edicao={false} />

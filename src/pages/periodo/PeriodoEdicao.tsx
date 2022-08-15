@@ -32,6 +32,7 @@ type PeriodoType = {
 
 export function PeriodoEdicao() {
 
+    let indexSubperiodo = 0;
     const [openSucesso, setOpenSucesso] = useState(false);
     const [openErro, setOpenErro] = useState(false);
     const [mensagem, setMensagem] = useState("");
@@ -136,9 +137,10 @@ export function PeriodoEdicao() {
                 <Line />
                 <Title valueTitle="Subperíodos" />
                 {subperiodos.map((subperiodo) => {
-
+                    indexSubperiodo++;
                     return (
                         <div className={styles.listaSubperiodos} key={subperiodo.id} id="subperiodo" onChange={() => atualizarSubperiodo(subperiodo.id)} data-key={subperiodo.id}>
+                            <p className={styles.tituloSubperiodo}>{`${indexSubperiodo}° subperíodo`}</p>
                             <InputText typeInput="text" idInput="nomeSubperiodo" valueInput={subperiodo.nome_subperiodo} edicao={true} />
                             <InputText typeInput="date" idInput="dataInicioSubperiodo" valueInput={subperiodo.data_inicio} edicao={true} />
                             <InputText typeInput="date" idInput="dataFimSubperiodo" valueInput={subperiodo.data_fim} edicao={true} />

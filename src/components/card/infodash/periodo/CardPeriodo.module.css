@@ -70,6 +70,18 @@
     color: var(--gray-300);
 }
 
-.opcaoHabilitada  {
+.opcaoHabilitada {
     text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .cardPeriodo {
+        width: 100%;
+    }
+
+    .comOpcoes {
+        width: 91%;
+        left: 8px;
+        top: 45px;
+    }
 }

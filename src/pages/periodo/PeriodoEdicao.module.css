@@ -54,3 +54,31 @@
 .naoMostrarAlertaErro {
     display: none !important;
 }
+
+.tituloSubperiodo {
+    font-weight: 600;
+    display: none;
+}
+
+@media (max-width: 768px) { 
+
+    .tituloSubperiodo {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 13px;
+        margin-top: 13px;
+    }
+
+    .inputSubperiodo {
+        flex-direction: column;
+    }
+
+    .buttons {
+        justify-content: center;
+    }
+
+    .listaSubperiodos {
+        flex-direction: column;
+    }
+
+}

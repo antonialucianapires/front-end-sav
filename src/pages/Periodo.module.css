@@ -31,3 +31,14 @@
 .naoMostrarAlertaErro {
     display: none !important;
 }
+
+@media (max-width: 768px) {
+    .formSearch {
+        flex-direction: column-reverse;
+    }
+
+    .listaPeriodos {
+    flex-direction: column;
+    }
+
+}

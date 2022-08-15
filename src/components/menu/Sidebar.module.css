@@ -1,5 +1,5 @@
 .sidebar {
-    height: 100%;
+    height: 66rem;
     background: var(--blue-500);
     color: var(--white);
     padding: 1rem;
@@ -30,4 +30,32 @@
     color: var(--white);
     text-decoration: none;
     line-height: 1.6;
+}
+
+.botaoMenu {
+    display: none;
+}
+
+.sidebarNone {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .sidebarList li a{
+        font-size: 1.2rem;
+    }
+
+    .menuSidebar {
+        color: var(--white);
+        background-color: var(--blue-500);
+    }
+
+    .botaoMenu {
+        display: block;
+        margin: 10px;
+    }
+
+    .sidebar {
+        height: 46rem;
+    }
 }

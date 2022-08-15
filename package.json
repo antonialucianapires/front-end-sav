@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build --mode production",
+    "local": "tsc && vite build --mode develop",
     "preview": "vite preview",
     "mocks": "mocks-server"
   },

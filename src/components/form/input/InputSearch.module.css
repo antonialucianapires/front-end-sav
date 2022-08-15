@@ -17,3 +17,10 @@
     border: 0;
     outline: none;   
 }
+
+@media (max-width: 768px) {
+    .formInputSearch {
+        display: flex;
+        width: 100%;
+    }
+}

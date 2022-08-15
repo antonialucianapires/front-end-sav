@@ -36,6 +36,7 @@ let lista = ListFunction(0);
 
 export function PeriodoCriacao() {
 
+    let indexSubperiodo = 0;
     const [option, setOption] = useState("0");
     const [openSucesso, setOpenSucesso] = useState(false);
     const [openErro, setOpenErro] = useState(false);
@@ -131,8 +132,10 @@ export function PeriodoCriacao() {
                 <Title valueTitle="Subperíodos" />
                 <div className={styles.listaSubperiodos} id="subperiodos">
                     {lista.map((item, index) => {
+                        indexSubperiodo++;
                         return (
                             <div className={styles.inputSubperiodo} key={index} id={`${item}`}>
+                                <p className={styles.tituloSubperiodo}>{`${indexSubperiodo}° subperíodo`}</p>
                                 <InputText typeInput="text" idInput="nomeSubperiodo" placeholderInput="insira o nome do subperíodo" edicao={true} />
                                 <InputText typeInput="date" idInput="dataInicioSubperiodo" valueInput="" edicao={true} />
                                 <InputText typeInput="date" idInput="dataFimSubperiodo" valueInput="" edicao={true} />
