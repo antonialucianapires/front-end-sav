@@ -103,10 +103,11 @@ export function PeriodoEdicao() {
 
     function atualizarSubperiodo(idSubperiodoAtualizacao: number) {
 
-        let nomeSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[0]);
-        let dataInicioSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[1]);
-        let dataFimSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[2]);
+        let nomeSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[1]);
+        let dataInicioSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[2]);
+        let dataFimSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[3]);
         
+        console.log(dataInicioSubperiodo)
 
         axios.put(`${url}/periodos/subperiodos/${idSubperiodoAtualizacao}`, {
 
