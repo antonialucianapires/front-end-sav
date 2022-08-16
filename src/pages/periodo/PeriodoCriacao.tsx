@@ -73,10 +73,9 @@ export function PeriodoCriacao() {
         subperiodos?.forEach(item => {
 
             let inputs = item.childNodes;
-
-            let nomeSubperiodo = String(getValue(inputs[0]));
-            let dataInicioSubperiodo = getValue(inputs[1]);
-            let dataFimSubperiodo = getValue(inputs[1]);
+            let nomeSubperiodo = String(getValue(inputs[1]));
+            let dataInicioSubperiodo = getValue(inputs[2]);
+            let dataFimSubperiodo = getValue(inputs[3]);
 
             const subperiodo: Subperiodo = {
                 nome_subperiodo: nomeSubperiodo,
