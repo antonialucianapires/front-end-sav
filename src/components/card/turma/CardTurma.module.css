@@ -1,0 +1,24 @@
+.cardTurma {
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid var(--gray-300);
+    border-radius: 8px;
+    padding: 1rem;
+    width: 100%;
+    position: relative;
+}
+
+.total_estudantes {
+    display: inline;
+    padding: 3px;
+    border-radius: 5px;
+    background: var(--gray-300);
+    color: var(--gray-500);
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .cardTurma {
+        width: 100%;
+    }
+}
