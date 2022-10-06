@@ -12,6 +12,25 @@
 
 .listaTurmas {
     display: flex;
+    flex-direction: column;
     margin-top: 2rem;
     gap: 1.5rem;
+}
+
+.mostrarAlertaSucesso {
+    display: block;
+    margin-top: 20px;
+}
+
+.naoMostrarAlertaSucesso {
+    display: none !important;
+}
+
+.mostrarAlertaErro {
+    display: block;
+    margin-top: 20px;
+}
+
+.naoMostrarAlertaErro {
+    display: none !important;
 }
