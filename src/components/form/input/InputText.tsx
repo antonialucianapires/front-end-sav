@@ -7,6 +7,7 @@ type InputTextType = {
     placeholderInput?: string;
     idInput: string;
     edicao: boolean;
+    label?: string;
 }
 
 export function InputText(input: InputTextType){
@@ -14,6 +15,9 @@ export function InputText(input: InputTextType){
     const [valueInputText, setValueInputText] = useState(input.valueInput);
 
     return(
-        <input className={input.edicao ? styles.inputText : styles.inputTextEdit} type={input.typeInput} id={input.idInput} value={valueInputText} placeholder={input.placeholderInput ? input.placeholderInput : valueInputText} onChange={e => setValueInputText(e.target.value)} readOnly={!input.edicao} />
+       <div>
+        <label className={input.label ? styles.label : styles.notLabel}>{input.label}</label>
+         <input className={input.edicao ? styles.inputText : styles.inputTextEdit} type={input.typeInput} id={input.idInput} value={valueInputText} placeholder={input.placeholderInput ? input.placeholderInput : valueInputText} onChange={e => setValueInputText(e.target.value)} readOnly={!input.edicao} />
+       </div>
     )
 }

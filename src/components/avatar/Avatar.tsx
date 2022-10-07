@@ -1,7 +1,8 @@
 import styles from './Avatar.module.css';
+import semImagem from '../../assets/imagem-usuario.png';
 
-export function Avatar({isMedium = false}) {
+export function Avatar({isMedium = false, urlImagem = semImagem}) {
     return (
-        <img className={isMedium ? styles.avatarMedium : styles.avatarSmall} src="https://images.unsplash.com/photo-1530785602389-07594beb8b73?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8d29tYW4lMjBibGFja3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" />
+        <img className={isMedium ? styles.avatarMedium : styles.avatarSmall} src={urlImagem} />
     );
 }

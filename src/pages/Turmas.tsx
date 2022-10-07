@@ -54,7 +54,7 @@ export function Turmas() {
             <form className={styles.formSearch} action="">
                 <InputSearch inputName={"pesquisaTurma"} messagePlaceholder={"Buscar turma por título"} />
                 <SelectPeriodo />
-                <PageButton nameButton="criar turma" linkButton="/periodos/novo" colorButton="blue" />
+                <PageButton nameButton="criar turma" linkButton="/turmas/novo" colorButton="blue" />
             </form>
             <section className={styles.listaTurmas}>
             {turmas.map(turma => {

@@ -1,4 +1,5 @@
 import { NotePencil, Trash } from 'phosphor-react';
+import { Link } from 'react-router-dom';
 import styles from './CardTurma.module.css'
 
 export function CardTurma(props: any) {
@@ -9,7 +10,7 @@ export function CardTurma(props: any) {
                 <p className={styles.total}>{props.total_estudantes + ` estudantes`}</p>
             </div>
             <ul id='listaOpcoes'>
-                <NotePencil size={27} color="var(--blue-500)"/>
+                <Link to={`/turmas/${props.idTurma}/visualizacao`}><NotePencil size={27} color="var(--blue-500)"/></Link>
                 <Trash size={27} color="var(--red-500)" onClick={() => props.eventoExcluir(props.idTurma)} cursor="pointer"/>
             </ul>
         </div>

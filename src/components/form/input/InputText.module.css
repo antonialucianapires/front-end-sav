@@ -25,6 +25,16 @@
     margin-bottom: 10px;
 }
 
+
+.label {
+    display: block;
+    font-weight: 600;
+}
+
+.notLabel {
+    display: none;
+}
+
 @media (max-width: 768px) {
     
 }

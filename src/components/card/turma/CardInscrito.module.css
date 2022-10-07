@@ -1,0 +1,52 @@
+.cardInscrito {
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid var(--gray-300);
+    border-radius: 8px;
+    padding: 1rem;
+    width: 100%;
+    position: relative;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.cardInscritoVisualizacao {
+    display: flex;
+    justify-content: flex-start;
+    border: 2px solid var(--gray-300);
+    border-radius: 8px;
+    padding: 1rem;
+    width: 100%;
+    position: relative;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.cardInscritoVisualizacao .infosInscrito {
+    margin-right: 416px;
+}
+
+.infosInscrito {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.tipoInscrito {
+    background-color: var(--gray-300);
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    color: var(--gray-500);
+    font-weight: 600;
+}
+
+
+.botaoExcluirVisivel {
+    display: block;
+}
+
+.botaoExcluirOculto {
+    display: none;
+}
