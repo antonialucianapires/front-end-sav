@@ -60,3 +60,18 @@
 .naoMostrarAlertaErro {
     display: none !important;
 }
+
+.botaoAtualizar {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--white);
+    text-decoration: none;
+    padding: 12px;
+    background: var(--green-200);
+    border-radius: 8px;
+    border: none;
+    min-width: 150px;
+    max-width: 200px;
+    box-shadow: 0px 3px 3px var(--gray-500);
+    margin-bottom: 10px;
+}

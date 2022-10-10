@@ -1,5 +1,5 @@
 import { PlusCircle } from "phosphor-react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { PageButton } from "../../components/form/button/PageButton";
 import { InputText } from "../../components/form/input/InputText";
 import { Header } from "../../components/header/Header";
@@ -24,6 +24,7 @@ type InscritoTurma = {
 
 type TurmaType = {
     id_turma: number;
+    id_periodo: number,
     nome: string;
     nome_periodo: string;
     descricao: string;
@@ -36,7 +37,8 @@ export function TurmaEdicao() {
     const [openSucesso, setOpenSucesso] = useState(false);
     const [openErro, setOpenErro] = useState(false);
     const [mensagem, setMensagem] = useState("");
-    const [turma,setTurma] = useState<TurmaType>();
+    const [turma, setTurma] = useState<TurmaType>();
+    const navigate = useNavigate();
 
     const { id } = useParams();
 
@@ -52,70 +54,105 @@ export function TurmaEdicao() {
             })
     }, []);
 
-    if(turma && turma.inscritos) {
-       let inss =  turma.inscritos;
-        //setIncristo(inss)
-    }
-  
 
-    function adicionarUsuarioNaTurma(idUsuario : number) {
+    function adicionarUsuarioNaTurma(idUsuario: number) {
         console.log("turma")
 
         let inscricao = {
             id: id,
             id_usuario: idUsuario
         }
-        
+
         axios.post(`${url}/turmas/inscricao`, inscricao)
-        .then((response) => {
-            setOpenSucesso(true)
-            setMensagem(response.data.message)
-
-            let inscrito = response.data.payload;
-
-            if(turma && inscrito) {
-                turma.inscritos.push(inscrito);
-               
-            }
-
-
-        }).catch((error) => {
-            setOpenErro(true)
-
-            if (error.response.data.status === 500) {
-                setMensagem(error.response.data.message + " Verifique se preencheu todos os campos corretamente e tente novamente.")
-            } else {
-                setMensagem(error.response.data.message)
-            }
-
-        });
-        
- 
-    }
-
-    function removerInscrito(idUsuario : number) {
-
-        axios.delete(`${url}/turmas/${id}/usuario/${idUsuario}`)
-        .then((response) => {
-
-            if(response.data.httpCode === 200 && turma) {
+            .then((response) => {
                 setOpenSucesso(true)
                 setMensagem(response.data.message)
-                turma.inscritos = turma.inscritos.filter(i => i.id !== idUsuario);
 
+                let inscrito = response.data.payload;
+
+                if (turma && inscrito) {
+                    turma.inscritos.push(inscrito);
+
+                }
+
+
+            }).catch((error) => {
+                setOpenErro(true)
+
+                if (error.response.data.status === 500) {
+                    setMensagem(error.response.data.message + " Verifique se preencheu todos os campos corretamente e tente novamente.")
+                } else {
+                    setMensagem(error.response.data.message)
+                }
+
+            });
+
+
+    }
+
+    function removerInscrito(idUsuario: number) {
+
+        axios.delete(`${url}/turmas/${id}/usuario/${idUsuario}`)
+            .then((response) => {
+
+                if (response.data.httpCode === 200 && turma) {
+                    setOpenSucesso(true)
+                    setMensagem(response.data.message)
+                    turma.inscritos = turma.inscritos.filter(i => i.id !== idUsuario);
+
+                }
+
+
+            }).catch((error) => {
+                setOpenErro(true)
+                if (error.response.data.status === 500) {
+                    setMensagem(error.response.data.message + " Verifique se preencheu todos os campos corretamente e tente novamente.")
+                } else {
+                    setMensagem(error.response.data.message)
+                }
+
+            });
+
+    }
+
+    const getValue = (data: any) => {
+        return data.value;
+    }
+
+    function atualizarTurma() {
+
+
+        var elementoNome = document.getElementById("nomeTurma");
+        var elementoDescricao = document.getElementById("descricaoTurma")
+
+        if (turma) {
+
+            let turmaAtualizada = {
+                nome: getValue(elementoNome),
+                descricao: getValue(elementoDescricao),
+                id_periodo: turma.id_periodo
             }
 
+            axios.post(`${url}/turmas`, turmaAtualizada)
+                .then((response) => {
 
-        }).catch((error) => {
-            setOpenErro(true)
-            if (error.response.data.status === 500) {
-                setMensagem(error.response.data.message + " Verifique se preencheu todos os campos corretamente e tente novamente.")
-            } else {
-                setMensagem(error.response.data.message)
-            }
+                    setOpenSucesso(true)
+                    setMensagem("Turma atualizada com sucesso! Carregando lista de turmas criadas... ")
+                    setTimeout(() => navigate("/turmas"), 4000)
 
-        });
-        
+
+                }).catch((error) => {
+                    setOpenErro(true)
+                    if (error.response.data.status === 500) {
+                        setMensagem(error.response.data.message + " Verifique se preencheu todos os campos corretamente e tente novamente.")
+                    } else {
+                        setMensagem(error.response.data.message)
+                    }
+
+                });
+        }
+
+
     }
 
 
@@ -129,21 +166,21 @@ export function TurmaEdicao() {
             </form>
             <Line />
             <div className={styles.blocoPesquisaDinamica}>
-            <PesquisaUsuarioDinamica eventoAdicionarUsuario={adicionarUsuarioNaTurma} />
+                <PesquisaUsuarioDinamica eventoAdicionarUsuario={adicionarUsuarioNaTurma} />
             </div>
             <div className={styles.tituloBotaoInscrito}>
                 <h3 className={styles.tituloInscritos}>Docentes</h3>
             </div>
-            <ListaInscritos inscritos={turma ? turma.inscritos : []} tipo="DOCENTE" isEdicao={true} eventoDeletarUsuario={removerInscrito}/>
+            <ListaInscritos inscritos={turma ? turma.inscritos : []} tipo="DOCENTE" isEdicao={true} eventoDeletarUsuario={removerInscrito} />
             <div className={styles.tituloBotaoInscrito}>
                 <h3 className={styles.tituloInscritos}>Estudantes</h3>
             </div>
             <div className={styles.listaEstudantes}>
-            <ListaInscritos inscritos={turma ? turma.inscritos : []} tipo="ESTUDANTE" isEdicao={true} eventoDeletarUsuario={removerInscrito}/>
+                <ListaInscritos inscritos={turma ? turma.inscritos : []} tipo="ESTUDANTE" isEdicao={true} eventoDeletarUsuario={removerInscrito} />
             </div>
             <div className={styles.listaBotoes}>
-            <PageButton nameButton="cancelar" linkButton="/turmas" colorButton="red" />
-            <PageButton nameButton="editar" linkButton={""} colorButton="green" />
+                <PageButton nameButton="cancelar" linkButton="/turmas" colorButton="red" />
+                <button type="button" className={styles.botaoAtualizar} onClick={atualizarTurma}>finalizar</button>
             </div>
             <Alert variant="standard" severity="success" className={openSucesso ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso} onClose={() => { setOpenSucesso(false) }}>{mensagem}</Alert>
             <Alert variant="standard" severity="error" className={openErro ? styles.mostrarAlertaErro : styles.naoMostrarAlertaErro} onClose={() => { setOpenErro(false) }}>{mensagem}</Alert>
