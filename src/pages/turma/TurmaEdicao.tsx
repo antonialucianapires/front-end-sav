@@ -137,8 +137,8 @@ export function TurmaEdicao() {
                 .then((response) => {
 
                     setOpenSucesso(true)
-                    setMensagem("Turma atualizada com sucesso! Carregando lista de turmas criadas... ")
-                    setTimeout(() => navigate("/turmas"), 4000)
+                    setMensagem("Turma atualizada com sucesso!")
+                    setTimeout(() => navigate(`/turmas/${id}/visualizacao`), 1200)
 
 
                 }).catch((error) => {
