@@ -40,6 +40,11 @@
     display: none;
 }
 
+.menuSidebar::after {
+    content: "oi";
+    width: 100%;
+}
+
 @media (max-width: 768px) {
     .sidebarList li a{
         font-size: 1.2rem;

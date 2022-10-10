@@ -17,6 +17,6 @@ export function CardInscrito(props: any) {
         <div className={styles.infosInscrito}><Avatar urlImagem={props.urlImagem} />
         <p>{props.nome}</p></div>
         <p className={styles.tipoInscrito}>{props.tipoInscrito}</p>
-        <Trash size={27} color="var(--red-500)" onClick={() => props.eventoExcluir(props.idTurma)} cursor="pointer" className={props.isEdicao ? styles.botaoExcluirVisivel : styles.botaoExcluirOculto}/>
+        <Trash size={27} color="var(--red-500)" onClick={() => props.eventoDeletarUsuario(props.idInscrito)} cursor="pointer" className={props.isEdicao ? styles.botaoExcluirVisivel : styles.botaoExcluirOculto}/>
     </div>);
 }

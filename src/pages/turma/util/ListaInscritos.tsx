@@ -14,6 +14,8 @@ type InscritoTurma = {
 type ListaType = {
     inscritos: InscritoTurma[];
     tipo: string;
+    isEdicao: boolean;
+    eventoDeletarUsuario?: any;
 }
 
 export function ListaInscritos(lista: ListaType) {
@@ -27,7 +29,7 @@ export function ListaInscritos(lista: ListaType) {
     return (
         <div>
             {lista.inscritos.filter(inscrito => inscrito.tipo === lista.tipo).map(inscrito  => {
-                return <CardInscrito urlImagem={inscrito.url_imagem} tipoInscrito={inscrito.tipo} nome={inscrito.nome} idInscrito={inscrito.id} isEdicao={false} key={inscrito.id} />
+                return <CardInscrito urlImagem={inscrito.url_imagem} tipoInscrito={inscrito.tipo} nome={inscrito.nome} idInscrito={inscrito.id} isEdicao={lista.isEdicao} key={inscrito.id} eventoDeletarUsuario={lista.eventoDeletarUsuario}/>
             })}
         </div>
     );

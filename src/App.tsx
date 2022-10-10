@@ -12,8 +12,8 @@ import { Configuracao } from './pages/Configuracao';
 import { PeriodoVisualizacao } from './pages/periodo/PeriodoVisualizacao';
 import { PeriodoEdicao } from './pages/periodo/PeriodoEdicao';
 import { PeriodoCriacao } from './pages/periodo/PeriodoCriacao';
-import { TurmaVisualizacao } from './pages/turma/TurmaVisualizacao';
 import { TurmaEdicao } from './pages/turma/TurmaEdicao';
+import { TurmaVisualizacao } from './pages/turma/TurmaVisualizacao';
 
 function App() {
 

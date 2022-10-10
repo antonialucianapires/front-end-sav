@@ -1,3 +1,27 @@
+.turmaEdicao {
+    display: flex;
+    flex-direction: column;
+    max-width: 70rem;
+    padding: 1rem;
+    position: relative;
+}
+
+.formularioTurma {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+
+}
+
+.formularioTurma div {
+    width: 100%;
+}
+
+.listaTurma {
+    display: flex;
+    gap: 1rem;
+}
+
 .tituloBotaoInscrito {
     display: flex;
     width: 100%;
@@ -7,7 +31,32 @@
     align-items: center;
 }
 
-.botaoAdicionar {
-    display: inline;
-    color: var(--green-300);
+.listaEstudantes {
+    width: 100%;
+    background: white;
+    display: block;
+    margin-bottom: 2rem;
+}
+
+.listaBotoes {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.mostrarAlertaSucesso {
+    display: block;
+}
+
+.naoMostrarAlertaSucesso {
+    display: none !important;
+}
+
+.mostrarAlertaErro {
+    display: block;
+}
+
+.naoMostrarAlertaErro {
+    display: none !important;
 }
