@@ -14,7 +14,7 @@ export function Header(props: any) {
                 <Bell color="var(--blue-500)" />
                 <span></span>
                 <p>{props.username}</p>
-                <Avatar />
+                <Avatar urlImagem={props.urlImagem} />
             </div>
         </header>
     )

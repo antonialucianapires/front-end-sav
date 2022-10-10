@@ -1,0 +1,27 @@
+.blocoPesquisa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    background-color: var(--white);
+
+    gap: 1rem;
+    font-weight: bold;
+}
+
+.blocoPesquisa header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.blocoPesquisa input {
+    color: var(--blue-500);
+    outline: none;   
+    background: var(--gray-300);
+    width: 100%;
+    border: 1px solid var(--gray-300);
+    padding: 1rem;
+    border-radius: 8px;
+}

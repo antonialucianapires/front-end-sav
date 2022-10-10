@@ -23,7 +23,7 @@ export function Periodo() {
     const [mensagem, setMensagem] = useState("");
 
     useEffect(() => {
-        axios.get(`${url}/periodos`)
+        axios.get(`${url}/periodos?com_subperiodos=false`)
             .then((response) => {
                 setPeriodos(response.data.payload)
             })
