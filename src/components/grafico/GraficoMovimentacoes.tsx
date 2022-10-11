@@ -8,7 +8,7 @@ type Movimentacao = {
 
 export function GraficoMovimentacao() {
 
-    const { data } = useFetch<Movimentacao[]>('http://localhost:3100/api/sav/v1/movimentacao/usuarios', 'get');
+    const data : Movimentacao[] = [];
 
     const options = {
         title: "Movimentações dos usuários por dia",

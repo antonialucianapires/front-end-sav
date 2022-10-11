@@ -11,7 +11,10 @@ type infosCard = {
 
 export function Home() {
 
-    const { data: repositories } = useFetch<infosCard[]>('http://localhost:3100/api/sav/v1/resume', 'get');
+    const repositories : infosCard[] = [{
+        title: "total avaliações",
+        value: "50"
+    }];
 
     return (
         <div className={styles.home}>

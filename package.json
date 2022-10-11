@@ -6,8 +6,7 @@
     "dev": "vite",
     "build": "tsc && vite build --mode production",
     "local": "tsc && vite build --mode development",
-    "preview": "vite preview",
-    "mocks": "mocks-server"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
