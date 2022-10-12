@@ -12,7 +12,7 @@ export function QuestaoCard(props : any) {
                 <Trash size={27} color="var(--red-500)" onClick={() => props.eventoExcluir(props.idQuestao)} cursor="pointer"/>
             </ul>
            </header>
-            <p>{props.enunciado}</p>
+           <p>{props.enunciado}</p>
         </div>
     );
 }

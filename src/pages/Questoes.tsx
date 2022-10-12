@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { QuestaoCard } from "../components/card/questao/QuestaoCard";
 import { PageButton } from "../components/form/button/PageButton";
+import { SelectTipoQuestao } from "../components/form/select/SelectTipoQuestao";
 import { Header } from "../components/header/Header";
 import { useFetch } from "../hooks/useFetch";
 import styles from "./Questoes.module.css";
@@ -28,18 +29,12 @@ export function Questoes() {
     const [openErro, setOpenErro] = useState(false);
     const [openSucesso, setOpenSucesso] = useState(false);
     const [mensagem, setMensagem] = useState("");
-
-
-    let { data: tipos } = useFetch<TipoQuestaoType[]>(`${url}/questoes/tipos`, 'get');
-
-    if (!tipos) {
-        tipos = [];
-    }
-
-    let tiposQuestao = tipos.map(t => t.id);
+    const [text, setText] = useState("");
+    const [tipo,setTipo] = useState<number[]>([]);
 
     useEffect(() => {
-        axios.get(`${url}/questoes?semItens=true&tipos=${tiposQuestao}`)
+
+        axios.get(`${url}/questoes?semItens=true&enunciado=${text}&tipos=${tipo}`)
             .then((response) => {
                 setQuestoes(response.data.payload.content)
             })
@@ -47,51 +42,29 @@ export function Questoes() {
                 setOpenErro(true)
                 setMensagem(error.response.data.message)
             })
-    }, []);
 
-    const capturaValorInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    }, [text,tipo]);
 
-        event.preventDefault()
 
-        const valorInput = event.target.value;
-
-        if (!valorInput) {
-
-            fetch(`${url}/questoes?semItens=true&tipos=${tiposQuestao}`)
-                .then((response) => response.json()
-                    .then((r) => {
-                        setQuestoes(r.payload.content)
-                    }));
-
-            return;
+    function filtrarTipoQuestao(idTipo: number) {
+        if(tipo.length === 0) {
+            setTipo([idTipo])
+        } else {
+            tipo.push(idTipo);
+            setTipo(tipo)
         }
-
-        fetch(`${url}/questoes?semItens=true&tipos=${tiposQuestao}&enunciado=${valorInput}`)
-            .then((response) => response.json()
-                .then((r) => {
-                    setQuestoes(r.payload.content)
-                }));
-
+        
     }
 
     return (
         <div className={styles.questoes}>
             <Header title="Questões" username="Andreia Gomes" subtitle="Gerencie as  questões da plataforma" />
             <form className={styles.formSearch} action="">
-                <input className={styles.formInputSearch} name="pesquisaTurma" placeholder="Buscar questões pelo enunciado" onChange={capturaValorInput} />
+                <input className={styles.formInputSearch} value={text} name="pesquisaTurma" placeholder="Buscar questões pelo enunciado" onChange={(search) => setText(search.target.value)} />
                 <PageButton nameButton="criar questão" linkButton="/questoes/nova" colorButton="blue" />
             </form>
             <div className={styles.opcoesFiltro}>
-                <FormGroup aria-label="position" row>
-                    {tipos.map(tipo => {
-                        return <FormControlLabel key={tipo.id} id={tipo.id.toString()}
-                            value="end"
-                            control={<Checkbox />}
-                            label={tipo.nome.toLowerCase()}
-                            labelPlacement="end"
-                        />
-                    })}
-                </FormGroup>
+                <SelectTipoQuestao eventoFiltrarTipo={filtrarTipoQuestao} />
             </div>
             <section className={styles.listaQuestoes}>
                 {questoes.map(questao => {
