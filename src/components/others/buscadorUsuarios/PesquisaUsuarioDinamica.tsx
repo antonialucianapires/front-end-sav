@@ -1,4 +1,3 @@
-import { Octagon, X } from 'phosphor-react';
 import { useState } from 'react';
 import { ItemResultado } from './ItemResultado';
 import styles from './PesquisaUsuarioDinamica.module.css';
@@ -24,7 +23,7 @@ export function PesquisaUsuarioDinamica(props : any) {
         if(!valorInput) {
             setUsuarios([]);
             return;
-        };
+        }
 
         let regex = new RegExp("[0-9]+");
 

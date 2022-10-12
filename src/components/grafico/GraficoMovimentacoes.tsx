@@ -1,5 +1,4 @@
 import Chart from "react-google-charts";
-import { useFetch } from "../../hooks/useFetch";
 import styles from './GraficoMovimentacoes.module.css'
 
 type Movimentacao = {

@@ -1,7 +1,6 @@
 import { CardInfoDash } from "../components/card/infodash/CardInfoDash";
 import { GraficoMovimentacao } from "../components/grafico/GraficoMovimentacoes";
 import { Header } from "../components/header/Header";
-import { useFetch } from "../hooks/useFetch";
 import styles from './Home.module.css';
 
 type infosCard = {

@@ -1,0 +1,29 @@
+.cardQuestao {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--gray-300);
+    padding: 1rem;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: var(--gray-500);
+    border-radius: 8px;
+    
+}
+
+.cardQuestao header {
+    display: flex;
+    justify-content: space-between;
+    color: black;
+}
+
+.cardQuestao header h2 {
+    font-size: 1.2rem;
+}
+
+
+.cardQuestao p {
+  max-width: 1000px; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}

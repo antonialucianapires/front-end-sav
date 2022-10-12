@@ -1,4 +1,4 @@
-import { Bell, Calendar, Chalkboard, ChartPie, Exam, Gear, House, SignOut, Users } from "phosphor-react";
+import { Bell, Calendar, Chalkboard, ChartPie, Exam, Gear, House, Question, SignOut, Users } from "phosphor-react";
 
 export const SidebarData = [
     {
@@ -15,6 +15,11 @@ export const SidebarData = [
         title: "períodos",
         icon: <Calendar size={24} />,
         link: "/periodos"
+    },
+    {
+        title: "questões",
+        icon: <Question size={24} />,
+        link: "/questoes"
     },
     {
         title: "avaliações",
