@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, TextField } from "@mui/material";
+import { useState } from "react";
 import { InputOpcaoResposta } from "../../components/form/input/InputOpcaoResposta";
 import { InputText } from "../../components/form/input/InputText";
 import { SelectNivelQuestao } from "../../components/form/select/SelectNivelQuestao";
@@ -19,18 +20,18 @@ export function QuestaoCriacao() {
     const [nivelSelecionado, setNivelSelecionado] = useState("FACIL");
     const [enunciado, setEnunciado] = useState("");
 
-    function capturarTipoSelecionado(tipoSelecionado : number, nomeTipo : string) {
-       setNomeTipoResposta(nomeTipo)
-       let nomeTipoSelecionado = nomeTipo.normalize("NFD").replace(/[^a-zA-Z\s]/g, "").toUpperCase().replace(" ","_");
-       setTipoResposta(nomeTipoSelecionado);
-       setCodigoTipoSelecionado(tipoSelecionado);
+    function capturarTipoSelecionado(tipoSelecionado: number, nomeTipo: string) {
+        setNomeTipoResposta(nomeTipo)
+        let nomeTipoSelecionado = nomeTipo.normalize("NFD").replace(/[^a-zA-Z\s]/g, "").toUpperCase().replace(" ", "_");
+        setTipoResposta(nomeTipoSelecionado);
+        setCodigoTipoSelecionado(tipoSelecionado);
     }
 
-    function capturarNivelSelecionado(nivelSelecionado : string) {
+    function capturarNivelSelecionado(nivelSelecionado: string) {
         setNivelSelecionado(nivelSelecionado)
     }
 
-    function capturarEnunciado(enunciadoTexto : string) {
+    function capturarEnunciado(enunciadoTexto: string) {
         setEnunciado(enunciadoTexto);
     }
 
@@ -48,32 +49,33 @@ export function QuestaoCriacao() {
             lista = ListFunction(0)
     }
 
-    let opcoesResposta = document.querySelectorAll(`[data-check-resposta="itemResposta"]`);
+    let opcoesResposta = document.querySelectorAll(`[data-check="check"]`);
 
-    if(opcoesResposta) {
+    if (opcoesResposta) {
         opcoesResposta.forEach(itemResposta => {
-            console.log()
+            console.log(itemResposta)
         })
     }
 
 
 
     return (<div className={styles.questaoCriacao}>
-         <Header title="Questões" appendTitle="criação"  username="Andreia Gomes" subtitle="Crie uma nova questão para compor avaliações" />
-         <form className={styles.formularioQuestao}>
-         <InputText typeInput="text" idInput="tituloQuestao" edicao={true} placeholderInput="Escreva o título da questão" label="Título" />
-         <SelectTipoQuestao eventoSelecionado={capturarTipoSelecionado}/>
-         <SelectNivelQuestao eventoSelecionado={capturarNivelSelecionado} />
-         <TextArea placeholder="Escreva o enunciado da questão"label="Enunciado" evento={capturarEnunciado} />
-         </form>
-         <Line />
-         <Title valueTitle="Opções da questão" />
-         <p className={styles.subtitle}>Escreva o título de cada opção de resposta. Questões do tipo "resposta livre" não possuem resposta padrão, logo o gabarito não será automático, necessitando de atuação da pessoa docente.</p>
-         <p className={styles.descricaoOpcoesQuestao}><b>você selecionou o tipo de resposta:</b> <span><i>{nomeTipoResposta === "default" ? "nenhuma" : nomeTipoResposta}</i></span></p>
-         <section className={styles.opcoesQuestao}>
-            {lista.map((linha, index) => {
-                return <InputOpcaoResposta tipoResposta={tipoResposta} key={index} />
-            })}
-         </section>
+        <Header title="Questões" appendTitle="criação" username="Andreia Gomes" subtitle="Crie uma nova questão para compor avaliações" />
+        <form className={styles.formularioQuestao}>
+            <InputText typeInput="text" idInput="tituloQuestao" edicao={true} placeholderInput="Escreva o título da questão" label="Título" />
+            <SelectTipoQuestao eventoSelecionado={capturarTipoSelecionado} />
+            <SelectNivelQuestao eventoSelecionado={capturarNivelSelecionado} />
+            <TextArea placeholder="Escreva o enunciado da questão" label="Enunciado" evento={capturarEnunciado} />
+        </form>
+        <Line />
+        <Title valueTitle="Opções da questão" />
+        <p className={styles.subtitle}>Escreva o título de cada opção de resposta. Questões do tipo "resposta livre" não possuem resposta padrão, logo o gabarito não será automático, necessitando de atuação da pessoa docente.</p>
+        <p className={styles.descricaoOpcoesQuestao}><b>você selecionou o tipo de resposta:</b> <span><i>{nomeTipoResposta === "default" ? "nenhuma" : nomeTipoResposta}</i></span></p>
+        <section className={styles.opcoesQuestao}>
+        {lista.map((item, index) => {
+            index++
+            return <TextField id="outlined-basic"  label="descrição da opção" variant="outlined" color="primary" />
+        })}
+        </section>
     </div>);
 }
