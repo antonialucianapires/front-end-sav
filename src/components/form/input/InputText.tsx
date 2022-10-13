@@ -8,7 +8,7 @@ type InputTextType = {
     idInput: string;
     edicao: boolean;
     label?: string;
-    eventoCapturarTextoInput: any;
+    eventoCapturarTextoInput?: any;
 }
 
 export function InputText(input: InputTextType){
