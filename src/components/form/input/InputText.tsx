@@ -8,11 +8,13 @@ type InputTextType = {
     idInput: string;
     edicao: boolean;
     label?: string;
+    eventoCapturarTextoInput: any;
 }
 
 export function InputText(input: InputTextType){
 
     const [valueInputText, setValueInputText] = useState(input.valueInput);
+    input.eventoCapturarTextoInput(valueInputText)
 
     return(
        <div>

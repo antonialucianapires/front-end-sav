@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: fixed;
 }
 
 .header img {
@@ -38,11 +39,6 @@
 
 .sidebarNone {
     display: none;
-}
-
-.menuSidebar::after {
-    content: "oi";
-    width: 100%;
 }
 
 @media (max-width: 768px) {
