@@ -55,6 +55,17 @@ export function Questoes() {
 
     }
 
+    function eventoExcluir(idQuestao : number) {
+        axios.delete(`${url}/questoes/${idQuestao}`).then(response => {
+            setQuestoes(questoes.filter(questao => questao.id !== idQuestao))
+            setOpenSucesso(true)
+            setMensagem(response.data.message)
+        }).catch(error => {
+            setOpenErro(true)
+            setMensagem(error.response.data.message)
+        })
+    }
+
     return (
         <div className={styles.questoes}>
             <Header title="Questões" username="Andreia Gomes" subtitle="Gerencie as  questões da plataforma" />
@@ -67,7 +78,7 @@ export function Questoes() {
             </div>
             <section className={styles.listaQuestoes}>
                 {questoes.map(questao => {
-                    return <QuestaoCard titulo={questao.titulo} enunciado={questao.enunciado} idQuestao={questao.id} key={questao.id} />
+                    return <QuestaoCard titulo={questao.titulo} enunciado={questao.enunciado} idQuestao={questao.id} key={questao.id} eventoExcluir={eventoExcluir} />
                 })}
             </section>
             <Alert variant="standard" severity="success" className={openSucesso ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso} onClose={() => { setOpenSucesso(false) }}>{mensagem}</Alert>

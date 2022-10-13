@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, FormGroup, TextField } from "@mui/material";
+import { Checkbox, FormControlLabel, FormGroup, Radio, TextField } from "@mui/material";
 import styles from "./InputOpcaoResposta.module.css";
 
 export function InputOpcaoResposta(props : any) {
@@ -6,9 +6,8 @@ export function InputOpcaoResposta(props : any) {
     function bloquearOpcoes(event : React.ChangeEvent<HTMLInputElement>) {
         event.preventDefault();
 
-        console.log(event.target.textContent)
+        console.log(event.target.checked)
     }
-
 
     if(props.tipoResposta === "DICOTOMICA") {
         return (
@@ -20,8 +19,8 @@ export function InputOpcaoResposta(props : any) {
     }
 
     return (
-        <div className={styles.inputDivResposta} onChange={bloquearOpcoes} data-check-resposta="itemResposta">
-             <input type="checkbox" className={styles.checkbox} data-check="check" />
+        <div className={styles.inputDivResposta} data-check-resposta="itemResposta">
+             <FormControlLabel value="female" control={<Radio />} label="Female" />
              <input type={"text"} className={styles.inputText} /> 
         </div>
     )
