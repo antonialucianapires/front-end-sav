@@ -1,0 +1,19 @@
+.inputDivResposta {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    width: 100%;
+    
+}
+
+.checkbox {
+    width: 20px;
+    border: 1px solid var(--blue-500);
+}
+
+.inputText {
+    width: 100%;
+    border: 1px solid var(--blue-500);
+    border-radius: 8px;
+    padding: 8px;
+}

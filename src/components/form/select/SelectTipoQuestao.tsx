@@ -1,7 +1,6 @@
-import { FormGroup, FormControlLabel, Checkbox } from "@mui/material"
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useFetch } from "../../../hooks/useFetch";
+import styles from "./SelectTipoQuestao.module.css";
 const url = import.meta.env.VITE_BASE_URL;
 
 type TipoQuestaoType = {
@@ -9,8 +8,7 @@ type TipoQuestaoType = {
     nome: string;
 }
 
-export function SelectTipoQuestao(props : any) {
-
+export function SelectTipoQuestao(props: any) {
 
     let { data: tipoQuestao } = useFetch<TipoQuestaoType[]>(`${url}/questoes/tipos`, 'get');
 
@@ -18,18 +16,35 @@ export function SelectTipoQuestao(props : any) {
         tipoQuestao = []
     }
 
-    return (
-        <FormGroup aria-label="position" row>
-            {tipoQuestao.map(tipo => {
-                return <FormControlLabel key={tipo.id} id={tipo.id.toString()} data-group-name={"tipos-questao"}
-                    value="end"
-                    control={<Checkbox onChange={() => props.eventoFiltrarTipo(tipo.id)}  />}
-                    label={tipo.nome.toLowerCase()}
-                    labelPlacement="end"
-                    
+    const handleInputChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 
-             />
+        event.preventDefault();
+
+        const optionSelected = event.target.selectedOptions.item(0);
+
+        if (optionSelected) {
+            let id = parseInt(optionSelected.id);
+            let nome = optionSelected.value;
+            props.eventoSelecionado(id, nome)
+        }
+
+    }
+
+    return (
+
+       <div>
+        <label><b>Tipo</b></label>
+         <select tabIndex={props.tabIndex ? props.tabIndex : undefined} aria-disabled={props.somenteLeitura ? props.somenteLeitura : undefined} className={props.somenteLeitura ? styles.readOnly : styles.selectPeriodo} id="tiposQuestao" onChange={handleInputChange} >
+            <option value="default">Selecionar</option>
+            {tipoQuestao.map(tipo => {
+                if (props.nomeTipoAtual !== undefined && tipo.nome === props.nomeTipoAtual) {
+                    return <option id="tipoQuestao" key={tipo.id} value={tipo.nome} defaultValue={tipo.nome} selected={true} data-tipo={tipo.id}>{tipo.nome}</option>
+                }
+                return <option id={tipo.id.toString()} key={tipo.id} value={tipo.nome} data-tipo={tipo.id} >{tipo.nome}</option>
             })}
-        </FormGroup>
-    )
+        </select>
+       </div>
+
+    );
+
 }

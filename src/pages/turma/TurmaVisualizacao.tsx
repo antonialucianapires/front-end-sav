@@ -52,13 +52,13 @@ export function TurmaVisualizacao() {
             <div className={styles.tituloBotaoInscrito}>
                 <h3 className={styles.tituloInscritos}>Docentes</h3>
             </div>
-            <ListaInscritos inscritos={inscritosTurma} tipo="DOCENTE"/>
+            <ListaInscritos inscritos={inscritosTurma} tipo="DOCENTE" isEdicao={false}/>
 
             <div className={styles.tituloBotaoInscrito}>
                 <h3 className={styles.tituloInscritos}>Estudantes</h3>
             </div>
             <div className={styles.listaEstudantes}>
-            <ListaInscritos inscritos={inscritosTurma} tipo="ESTUDANTE"/>
+            <ListaInscritos inscritos={inscritosTurma} tipo="ESTUDANTE" isEdicao={false}/>
             </div>
             <div className={styles.listaBotoes}>
             <PageButton nameButton="voltar" linkButton="/turmas" colorButton="blue" />

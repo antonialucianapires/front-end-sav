@@ -1,0 +1,42 @@
+.questaoCriacao { 
+    max-width: 70rem;
+    padding: 1rem;
+}
+
+.formularioQuestao {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
+}
+
+.formularioQuestao input {
+    flex-grow: 2;
+}
+
+.formularioQuestao select {
+    flex-grow: 1;
+}
+
+.formularioQuestao textarea {
+    flex-grow: 2;
+}
+
+
+.subtitle {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.descricaoOpcoesQuestao {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.opcoesQuestao {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}

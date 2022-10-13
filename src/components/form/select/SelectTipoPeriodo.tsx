@@ -22,7 +22,7 @@ export function SelectTipoPeriodo(props: any) {
                 if (props.nomeTipoAtual !== undefined && tipo.nome === props.nomeTipoAtual) {
                     return <option id="tipoPeriodo" key={tipo.id} value={tipo.nome} defaultValue={tipo.nome}  selected={true} data-tipo={tipo.id}>{tipo.nome}</option>
                 }
-                return <option id="tipoPeriodo" key={tipo.id} value={tipo.nome} data-tipo={tipo.id} >{tipo.nome}</option>
+                return <option id="tipoPeriodo" key={tipo.id} value={tipo.nome} data-tipo={tipo.id}>{tipo.nome}</option>
             })}
         </select>
     );

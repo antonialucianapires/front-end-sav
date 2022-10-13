@@ -1,11 +1,10 @@
-import { Alert, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
+import { Alert } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { QuestaoCard } from "../components/card/questao/QuestaoCard";
 import { PageButton } from "../components/form/button/PageButton";
-import { SelectTipoQuestao } from "../components/form/select/SelectTipoQuestao";
+import { CheckboxTipoQuestao } from "../components/form/select/CheckboxTipoQuestao";
 import { Header } from "../components/header/Header";
-import { useFetch } from "../hooks/useFetch";
 import styles from "./Questoes.module.css";
 const url = import.meta.env.VITE_BASE_URL;
 
@@ -30,7 +29,7 @@ export function Questoes() {
     const [openSucesso, setOpenSucesso] = useState(false);
     const [mensagem, setMensagem] = useState("");
     const [text, setText] = useState("");
-    const [tipo,setTipo] = useState<number[]>([]);
+    const [tipo, setTipo] = useState<number[]>([]);
 
     useEffect(() => {
 
@@ -43,17 +42,17 @@ export function Questoes() {
                 setMensagem(error.response.data.message)
             })
 
-    }, [text,tipo]);
+    }, [text, tipo]);
 
 
     function filtrarTipoQuestao(idTipo: number) {
-        if(tipo.length === 0) {
+        if (tipo.length === 0) {
             setTipo([idTipo])
         } else {
             tipo.push(idTipo);
             setTipo(tipo)
         }
-        
+
     }
 
     return (
@@ -61,10 +60,10 @@ export function Questoes() {
             <Header title="Questões" username="Andreia Gomes" subtitle="Gerencie as  questões da plataforma" />
             <form className={styles.formSearch} action="">
                 <input className={styles.formInputSearch} value={text} name="pesquisaTurma" placeholder="Buscar questões pelo enunciado" onChange={(search) => setText(search.target.value)} />
-                <PageButton nameButton="criar questão" linkButton="/questoes/nova" colorButton="blue" />
+                <PageButton nameButton="criar questão" linkButton="/questoes/criacao" colorButton="blue" />
             </form>
             <div className={styles.opcoesFiltro}>
-                <SelectTipoQuestao eventoFiltrarTipo={filtrarTipoQuestao} />
+                <CheckboxTipoQuestao eventoFiltrarTipo={filtrarTipoQuestao} />
             </div>
             <section className={styles.listaQuestoes}>
                 {questoes.map(questao => {
