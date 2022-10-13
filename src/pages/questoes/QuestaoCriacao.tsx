@@ -1,6 +1,7 @@
-import { FormControl, RadioGroup, FormControlLabel, Radio, TextField, DialogProps, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { FormControl, RadioGroup, FormControlLabel, Radio, TextField, DialogProps, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Alert } from "@mui/material";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router";
 import { PageButton } from "../../components/form/button/PageButton";
 import { InputText } from "../../components/form/input/InputText";
 import { SelectNivelQuestao } from "../../components/form/select/SelectNivelQuestao";
@@ -36,6 +37,7 @@ export function QuestaoCriacao() {
     const [scroll, setScroll] = useState<DialogProps['scroll']>('paper');
     const [opcoes, setOpcoes] = useState<OpcaoResposta[]>([]);
     const [opcaoGabarito, setOpcaoGabarito] = useState("");
+    const navigate = useNavigate();
 
     function capturarValorTitulo(tituloQuestao: string) {
         setTitulo(tituloQuestao);
@@ -143,9 +145,15 @@ export function QuestaoCriacao() {
 
         axios.post(`${url}/questoes`, questao)
                 .then((response) => {
-                    setOpenSucesso(true)
-                    setMensagem(response.data.message)
-                    ///setTimeout(() => navigate("/periodos"), 4000)
+                    setOpen(false)
+                    setTimeout(() => {
+                        setOpenSucesso(true)
+                        setMensagem(`${response.data.message}! Direcionado você para a página de questões...`)
+
+                        setTimeout(() => navigate("/questoes"), 3000)
+
+                    },2000)
+                                        
 
                 }).catch((error) => {
                     setOpenErro(true)
@@ -240,5 +248,7 @@ export function QuestaoCriacao() {
             <PageButton nameButton="cancelar" linkButton="/questoes" colorButton="red" />
             <button type="button" className={styles.botaoSalvar} onClick={handleClickOpen('paper')}>criar questão</button>
         </div>
+        <Alert variant="standard" severity="success" className={openSucesso ? styles.mostrarAlertaSucesso : styles.naoMostrarAlertaSucesso} onClose={() => { setOpenSucesso(false) }}>{mensagem}</Alert>
+        <Alert variant="standard" severity="error" className={openErro ? styles.mostrarAlertaErro : styles.naoMostrarAlertaErro} onClose={() => { setOpenErro(false) }}>{mensagem}</Alert>
     </div>);
 }

@@ -83,3 +83,20 @@
 .grupoOpcoesDialogo {
     margin-bottom: 1rem;
 }
+
+
+.mostrarAlertaSucesso {
+    display: block;
+}
+
+.naoMostrarAlertaSucesso {
+    display: none !important;
+}
+
+.mostrarAlertaErro {
+    display: block;
+}
+
+.naoMostrarAlertaErro {
+    display: none !important;
+}
