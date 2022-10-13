@@ -45,6 +45,7 @@ export function PeriodoCriacao() {
 
     function handleChange(event: any) {
         setOption(event.target.value)
+        console.log(event.target.value)
     }
 
     switch (option) {

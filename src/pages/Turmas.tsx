@@ -1,7 +1,6 @@
 import { Alert } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
 import { CardTurma } from "../components/card/turma/CardTurma";
 import { PageButton } from "../components/form/button/PageButton";
 import { InputSearch } from "../components/form/input/InputSearch";
@@ -19,7 +18,6 @@ type TurmaType = {
 
 export function Turmas() {
 
-    const { id_usuario } = useParams();
 
     const [turmas, setTurmas] = useState<TurmaType[]>([]);
     const [mensagem, setMensagem] = useState("");

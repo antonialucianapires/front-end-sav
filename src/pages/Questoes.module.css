@@ -1,0 +1,58 @@
+.questoes{
+    max-width: 70rem;
+    padding: 1rem;
+}
+
+.formSearch {
+    display: flex;
+    width: 100%;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.formInputSearch {
+    background: var(--gray-300);
+    width: 80%;
+    display: flex;
+    gap: 1rem;
+    color: var(--gray-500);
+    border: 0;
+    border-radius: 8px;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 10px;
+}
+
+.formInputSearch input{
+    background: var(--gray-300);
+    width: 100%;
+    border: 0;
+    outline: none;   
+}
+
+.listaQuestoes {
+    gap: 1rem;
+}
+
+.opcoesFiltro {
+    margin-bottom: 1rem;
+}
+
+
+.mostrarAlertaSucesso {
+    display: block;
+    margin-top: 20px;
+}
+
+.naoMostrarAlertaSucesso {
+    display: none !important;
+}
+
+.mostrarAlertaErro {
+    display: block;
+    margin-top: 20px;
+}
+
+.naoMostrarAlertaErro {
+    display: none !important;
+}
