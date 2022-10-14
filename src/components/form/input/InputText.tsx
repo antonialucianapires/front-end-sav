@@ -14,12 +14,22 @@ type InputTextType = {
 export function InputText(input: InputTextType){
 
     const [valueInputText, setValueInputText] = useState(input.valueInput);
-    input.eventoCapturarTextoInput(valueInputText)
+    
+    if(input.edicao) {
+        input.eventoCapturarTextoInput(valueInputText)
+
+        return(
+            <div>
+             <label className={input.label ? styles.label : styles.notLabel}>{input.label}</label>
+              <input className={input.edicao ? styles.inputText : styles.inputTextEdit} type={input.typeInput} id={input.idInput} value={valueInputText} placeholder={input.placeholderInput ? input.placeholderInput : valueInputText} onChange={e => setValueInputText(e.target.value)} readOnly={!input.edicao} />
+            </div>
+         ) 
+    }
 
     return(
        <div>
         <label className={input.label ? styles.label : styles.notLabel}>{input.label}</label>
-         <input className={input.edicao ? styles.inputText : styles.inputTextEdit} type={input.typeInput} id={input.idInput} value={valueInputText} placeholder={input.placeholderInput ? input.placeholderInput : valueInputText} onChange={e => setValueInputText(e.target.value)} readOnly={!input.edicao} />
+         <input className={input.edicao ? styles.inputText : styles.inputTextEdit} type={input.typeInput} id={input.idInput} value={valueInputText} placeholder={input.placeholderInput ? input.placeholderInput : valueInputText} readOnly={!input.edicao} />
        </div>
     )
 }
