@@ -1,0 +1,12 @@
+.questaoEdicao {
+    max-width: 70rem;
+    padding: 1rem;
+}
+
+.formularioQuestao {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
+}

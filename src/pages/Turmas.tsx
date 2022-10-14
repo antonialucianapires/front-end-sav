@@ -25,7 +25,7 @@ export function Turmas() {
     const [openSucesso, setOpenSucesso] = useState(false);
 
     useEffect(() => {
-        axios.get(`${url}/turmas?id_usuario=4`)
+        axios.get(`${url}/turmas?id_usuario=1`)
             .then((response) => {
                 setTurmas(response.data.payload.content)
             })

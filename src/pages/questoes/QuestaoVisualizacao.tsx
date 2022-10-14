@@ -36,7 +36,7 @@ export function QuestaoVisualizacao() {
 
     const { id } = useParams();
 
-    const endpointEdicao = `/questao/${id}/edicao`
+    const endpointEdicao = `/questoes/${id}/edicao`
 
     let { data: questao } = useFetch<Questao>(`${url}/questoes/${id}`, 'get');
 

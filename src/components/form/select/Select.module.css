@@ -1,3 +1,7 @@
+.divSelecionarPeriodo {
+    width: 100%;
+}
+
 .selectPeriodo {
     width: 100%;
     background: var(--gray-300);

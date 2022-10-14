@@ -9,19 +9,25 @@ type InputTextType = {
     edicao: boolean;
     label?: string;
     eventoCapturarTextoInput?: any;
+    descricao_input?: string;
+    inputKey? : number;
 }
 
 export function InputText(input: InputTextType){
 
     const [valueInputText, setValueInputText] = useState(input.valueInput);
+    const [idInputText, setIdInputText] = useState(input.idInput);
     
     if(input.edicao) {
-        input.eventoCapturarTextoInput(valueInputText)
+        
+        if(input.eventoCapturarTextoInput) {
+            input.eventoCapturarTextoInput(valueInputText, idInputText, input.descricao_input)
+        }
 
         return(
             <div>
              <label className={input.label ? styles.label : styles.notLabel}>{input.label}</label>
-              <input className={input.edicao ? styles.inputText : styles.inputTextEdit} type={input.typeInput} id={input.idInput} value={valueInputText} placeholder={input.placeholderInput ? input.placeholderInput : valueInputText} onChange={e => setValueInputText(e.target.value)} readOnly={!input.edicao} />
+              <input className={input.edicao ? styles.inputText : styles.inputTextEdit} type={input.typeInput} id={input.idInput} value={valueInputText} placeholder={input.placeholderInput ? input.placeholderInput : valueInputText} onChange={e => {setValueInputText(e.target.value), setIdInputText(e.target.id)}} readOnly={!input.edicao} data-descricao-input={input.descricao_input} data-input-key={input.inputKey}/>
             </div>
          ) 
     }
