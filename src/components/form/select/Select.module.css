@@ -32,3 +32,11 @@
     pointer-events: none;
     touch-action: none;
 }
+
+.label {
+    display: block;
+}
+
+.semLabel {
+    display: none;
+}
