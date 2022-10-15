@@ -10,27 +10,29 @@ type TextAreaType = {
 
 export function TextArea(props: TextAreaType) {
 
-    if (!props.isEdicao) {
+    if (props.isEdicao) {
+
+        function capturarEnunciado(event: React.ChangeEvent<HTMLTextAreaElement>) {
+            event.preventDefault();
+            props.evento(event.target.value);
+        }
+    
         return (
             <div>
                 <label><b>{props.label}</b></label>
-                <textarea className={styles.textAreaReadOnly} readOnly={props.isEdicao} value={props.valorAtual}>
+                <textarea className={styles.textArea} placeholder={props.placeholder} readOnly={!props.isEdicao} onChange={capturarEnunciado} value={props.valorAtual ? props.valorAtual : ""}>
                 </textarea>
             </div>
         )
-    }
-
-
-    function capturarEnunciado(event: React.ChangeEvent<HTMLTextAreaElement>) {
-        event.preventDefault();
-        props.evento(event.target.value);
+        
     }
 
     return (
         <div>
             <label><b>{props.label}</b></label>
-            <textarea className={styles.textArea} placeholder={props.placeholder} onChange={capturarEnunciado}>
+            <textarea className={styles.textAreaReadOnly} readOnly={props.isEdicao} value={props.valorAtual}>
             </textarea>
         </div>
     )
+    
 }

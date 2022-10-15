@@ -117,7 +117,7 @@ export function PeriodoEdicao() {
         axios.put(`${url}/periodos/subperiodos/${idSubperiodoAtualizacao}`, {
 
             nome_subperiodo: nomeSubperiodo,
-            codigo_periodo: parseInt(id),
+            codigo_periodo: id,
             data_inicio: dataInicioSubperiodo,
             data_fim: dataFimSubperiodo
 

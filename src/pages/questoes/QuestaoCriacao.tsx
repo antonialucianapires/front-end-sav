@@ -137,11 +137,10 @@ export function QuestaoCriacao() {
             titulo: titulo,
             enunciado: enunciado,
             tipo_questao: codigoTipoSelecionado,
-            nivel: nivelSelecionado,
+            nivel_questao: nivelSelecionado,
             itens_questao: itensQuestao
         }
 
-        console.log(questao)
 
         axios.post(`${url}/questoes`, questao)
                 .then((response) => {

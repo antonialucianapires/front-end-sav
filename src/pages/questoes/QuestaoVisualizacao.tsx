@@ -20,16 +20,16 @@ type TipoQuestao = {
 type ItemQuestao = {
     id: number;
     descricao: string;
-    indicadorGabarito: string;
+    indicador_gabarito: string;
 }
 
 type Questao = {
     id: number;
     titulo: string;
     enunciado: string;
-    tipoQuestao: TipoQuestao;
-    nivelQuestao: string;
-    itens: ItemQuestao[];
+    tipo_questao: TipoQuestao;
+    nivel_questao: string;
+    itens_questao: ItemQuestao[];
 }
 
 export function QuestaoVisualizacao() {
@@ -42,7 +42,7 @@ export function QuestaoVisualizacao() {
 
     console.log(questao)
 
-    let itensQuestao: ItemQuestao[] = questao ? questao.itens : [];
+    let itensQuestao: ItemQuestao[] = questao ? questao.itens_questao : [];
 
 
 
@@ -51,8 +51,8 @@ export function QuestaoVisualizacao() {
 
         <form className={styles.formularioQuestao}>
             <InputText typeInput="text" idInput={questao ? questao.id.toString() : ""} edicao={false} valueInput={questao ? questao.titulo : ""} placeholderInput={questao ? questao.titulo : ""} label="Título" />
-            <SelectTipoQuestao somenteLeitura={true} nomeTipoAtual={questao ? questao.tipoQuestao.nome : ""}/>
-            <SelectNivelQuestao somenteLeitura={true} nomeTipoAtual={questao ? questao.nivelQuestao : ""}/>
+            <SelectTipoQuestao somenteLeitura={true} nomeTipoAtual={questao ? questao.tipo_questao.nome : ""}/>
+            <SelectNivelQuestao somenteLeitura={true} nomeTipoAtual={questao ? questao.nivel_questao : ""}/>
             <TextArea valorAtual={questao ? questao.enunciado : ""} label="Enunciado" isEdicao={false} />
         </form>
         <Line />
@@ -61,7 +61,7 @@ export function QuestaoVisualizacao() {
         <br/>Observação: para casos de questão múltipla escolha e/ou dicotômica, o gabarito é a opção destacada.</p>
         <ul className={styles.opcoesQuestao}>
             {itensQuestao.map(item => {
-                return <li className={item.indicadorGabarito === 'S' ? styles.inputQuestaoGabarito : undefined}>{item.descricao}</li>
+                return <li className={item.indicador_gabarito === 'S' ? styles.inputQuestaoGabarito : undefined}>{item.descricao}</li>
             })}
         </ul>
 
