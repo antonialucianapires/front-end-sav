@@ -18,8 +18,8 @@ type QuestaoType = {
     id: number;
     titulo: string;
     enunciado: string;
-    tipoQuestao: TipoQuestaoType;
-    nivelQuestao: string;
+    tipo_questao: TipoQuestaoType;
+    nivel_questao: string;
 }
 
 export function Questoes() {

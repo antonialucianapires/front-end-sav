@@ -137,11 +137,10 @@ export function QuestaoCriacao() {
             titulo: titulo,
             enunciado: enunciado,
             tipo_questao: codigoTipoSelecionado,
-            nivel: nivelSelecionado,
+            nivel_questao: nivelSelecionado,
             itens_questao: itensQuestao
         }
 
-        console.log(questao)
 
         axios.post(`${url}/questoes`, questao)
                 .then((response) => {
@@ -173,7 +172,7 @@ export function QuestaoCriacao() {
             <InputText typeInput="text" idInput="tituloQuestao" edicao={true} placeholderInput="Escreva o título da questão" label="Título" eventoCapturarTextoInput={capturarValorTitulo} />
             <SelectTipoQuestao eventoSelecionado={capturarTipoSelecionado} />
             <SelectNivelQuestao eventoSelecionado={capturarNivelSelecionado} />
-            <TextArea placeholder="Escreva o enunciado da questão" label="Enunciado" evento={capturarEnunciado} />
+            <TextArea placeholder="Escreva o enunciado da questão" label="Enunciado" evento={capturarEnunciado} isEdicao={true} />
         </form>
         <Line />
         <Title valueTitle="Opções da questão" />

@@ -32,23 +32,156 @@ type Periodo = {
     subperiodos: Subperiodo[];
 }
 
+type SubperiodoDto = {
+    id: number;
+    nome_subperiodo: string;
+    data_inicio: string;
+    data_fim: string;
+}
+
 let lista = ListFunction(0);
 
 export function PeriodoCriacao() {
 
     let indexSubperiodo = 0;
-    const [option, setOption] = useState("0");
     const [openSucesso, setOpenSucesso] = useState(false);
     const [openErro, setOpenErro] = useState(false);
     const [mensagem, setMensagem] = useState("");
-    const navigate = useNavigate();
+    const [valorNomePeriodo, setValorNomePeriodo] = useState("");
+    const [nomeTipoPeriodo, setNomeTipoPeriodo] = useState("");
+    const [codigoTipoPeriodo, setCodigoTipoPeriodo] = useState(0);
+    const [dataInicio, setDataInicio] = useState("");
+    const [dataFim, setDataFim] = useState("");
+    const [subperiodosLista, setSubperiodosLista] = useState<SubperiodoDto[]>([]);
 
-    function handleChange(event: any) {
-        setOption(event.target.value)
-        console.log(event.target.value)
+
+    function handleValorTitulo(nomePeriodo: string) {
+        setValorNomePeriodo(nomePeriodo);
     }
 
-    switch (option) {
+    function handleTipoPeriodo(id: string, nome: string) {
+        setCodigoTipoPeriodo(parseInt(id))
+        setNomeTipoPeriodo(nome)
+        setSubperiodosLista([])
+    }
+
+    function handleDataInicio(dataInicio: string) {
+        setDataInicio(dataInicio)
+    }
+
+    function handleDataFim(dataFim: string) {
+        setDataFim(dataFim)
+    }
+
+    function handleNomeSubperiodo(valorInput: string, id: string) {
+
+
+        let sub = {
+            id: parseInt(id),
+            nome_subperiodo: valorInput,
+            data_inicio: "",
+            data_fim: ""
+        }
+
+        let subAtual = subperiodosLista.find(o => o.id === parseInt(id))
+
+        if (subAtual) {
+
+            sub = {
+                id: subAtual.id,
+                nome_subperiodo: valorInput,
+                data_inicio: subAtual.data_inicio,
+                data_fim: subAtual.data_fim
+            }
+
+            let index = subperiodosLista.indexOf(subAtual);
+            subperiodosLista.splice(index, 1);
+            if (sub.id !== NaN) {
+                subperiodosLista.push(sub)
+            }
+
+
+        } else {
+            if (sub.id !== NaN) {
+                subperiodosLista.push(sub)
+            }
+        }
+    }
+
+    function handleDataInicioSubperiodo(valorInput: string, id: string) {
+
+        let sub = {
+            id: parseInt(id),
+            nome_subperiodo: "",
+            data_inicio: valorInput,
+            data_fim: ""
+        }
+
+        let subAtual = subperiodosLista.find(o => o.id === parseInt(id))
+
+        if (subAtual) {
+
+            sub = {
+                id: subAtual.id,
+                nome_subperiodo: subAtual.nome_subperiodo,
+                data_inicio: valorInput,
+                data_fim: subAtual.data_fim
+            }
+
+            let index = subperiodosLista.indexOf(subAtual);
+            subperiodosLista.splice(index, 1);
+            if (sub.id !== NaN) {
+                subperiodosLista.push(sub)
+            }
+
+
+        } else {
+            if (sub.id !== NaN) {
+                subperiodosLista.push(sub)
+            }
+        }
+
+    }
+
+    function handleDataFimSubperiodo(valorInput: string, id: string) {
+
+        let sub = {
+            id: parseInt(id),
+            nome_subperiodo: "",
+            data_inicio: "",
+            data_fim: valorInput
+        }
+
+        let subAtual = subperiodosLista.find(o => o.id === parseInt(id))
+
+        if (subAtual) {
+
+            sub = {
+                id: subAtual.id,
+                nome_subperiodo: subAtual.nome_subperiodo,
+                data_inicio: subAtual.data_inicio,
+                data_fim: valorInput
+            }
+
+            let index = subperiodosLista.indexOf(subAtual);
+            subperiodosLista.splice(index, 1);
+            if (sub.id !== NaN) {
+                subperiodosLista.push(sub)
+            }
+
+        } else {
+            if (sub.id !== NaN) {
+                subperiodosLista.push(sub)
+            }
+        }
+
+        console.log(subperiodosLista.filter(s => s.id.valueOf()))
+    }
+
+
+    const navigate = useNavigate();
+
+    switch (nomeTipoPeriodo) {
         case tiposPeriodo.BIMESTRAL:
             lista = ListFunction(6)
             break;
@@ -64,57 +197,38 @@ export function PeriodoCriacao() {
 
     function criarNovoPeriodo() {
 
-        let nomePeriodo = document.querySelector("#nomePeriodo");
-        let tipo = capturarTipoPeriodo();
-        let dataInicioPeriodo = document.querySelector("#dataInicioPeriodo");
-        let dataFimPeriodo = document.querySelector("#dataFimPeriodo");
-        let subperiodos = document.querySelector("#subperiodos")?.childNodes;
-
-        const subperiodosLista: Subperiodo[] = [];
-        subperiodos?.forEach(item => {
-
-            let inputs = item.childNodes;
-            let nomeSubperiodo = String(getValue(inputs[1]));
-            let dataInicioSubperiodo = getValue(inputs[2]);
-            let dataFimSubperiodo = getValue(inputs[3]);
-
-            const subperiodo: Subperiodo = {
-                nome_subperiodo: nomeSubperiodo,
-                data_inicio: dataInicioSubperiodo,
-                data_fim: dataFimSubperiodo
-            }
-
-            subperiodosLista.push(subperiodo);
-        });
-
-        if (nomePeriodo && isEmpty(nomePeriodo) === false && dataInicioPeriodo && isEmpty(dataInicioPeriodo) === false && dataFimPeriodo && isEmpty(dataInicioPeriodo) === false && subperiodosLista) {
-
-            const periodo: Periodo = {
-                nome_periodo: String(getValue(nomePeriodo)),
-                tipo_periodo: Number(tipo),
-                data_inicio: String(getValue(dataInicioPeriodo)),
-                data_fim: String(getValue(dataFimPeriodo)),
-                subperiodos: subperiodosLista
-            }
-
-            axios.post(`${url}/periodos`, periodo)
-                .then((response) => {
-                    setOpenSucesso(true)
-                    setMensagem(response.data.message)
-                    setTimeout(() => navigate("/periodos"), 4000)
-
-                }).catch((error) => {
-                    setOpenErro(true)
-
-                    if (error.response.data.status === 500) {
-                        setMensagem(error.response.data.message + " Verifique se preencheu todos os campos corretamente e tente novamente.")
-                    } else {
-                        setMensagem(error.response.data.message)
-                    }
-
-                });
+        const periodo: Periodo = {
+            nome_periodo: valorNomePeriodo,
+            tipo_periodo: codigoTipoPeriodo,
+            data_inicio: dataInicio,
+            data_fim: dataFim,
+            subperiodos: subperiodosLista.map(sub => {
+                return {
+                    nome_subperiodo: sub.nome_subperiodo,
+                    data_inicio: sub.data_inicio,
+                    data_fim: sub.data_fim
+                }
+            })
         }
 
+        console.log(periodo)
+
+        axios.post(`${url}/periodos`, periodo)
+            .then((response) => {
+                setOpenSucesso(true)
+                setMensagem(response.data.message)
+                setTimeout(() => navigate("/periodos"), 4000)
+
+            }).catch((error) => {
+                setOpenErro(true)
+
+                if (error.response.data.status === 500) {
+                    setMensagem(error.response.data.message + " Verifique se preencheu todos os campos corretamente e tente novamente.")
+                } else {
+                    setMensagem(error.response.data.message)
+                }
+
+            });
     }
 
 
@@ -122,11 +236,11 @@ export function PeriodoCriacao() {
         <div className={styles.periodoCriacao}>
             <Header title="Período" appendTitle="Criação" subtitle="Criei um novo período escolar e seus respectivos subperíodos" username="Andreia Gomes" />
             <form className={styles.formularioPeriodo} key="formularioPeriodo">
-                <InputText typeInput="text" idInput="nomePeriodo" edicao={true} placeholderInput="escreva o título do período" valueInput="" />
+                <InputText typeInput="text" idInput="nomePeriodo" edicao={true} placeholderInput="escreva o título do período" valueInput={valorNomePeriodo} eventoCapturarTextoInput={handleValorTitulo} label="Nome do período" />
                 <div className={styles.informacoesPeriodo}>
-                    <SelectTipoPeriodo evento={handleChange} somenteLeitura={false} />
-                    <InputText typeInput="date" valueInput="" idInput={"dataInicioPeriodo"} edicao={true} />
-                    <InputText typeInput="date" valueInput="" idInput={"dataFimPeriodo"} edicao={true} />
+                    <SelectTipoPeriodo somenteLeitura={false} label="Tipo do período" eventoSelecionado={handleTipoPeriodo} />
+                    <InputText typeInput="date" valueInput="" idInput={"dataInicioPeriodo"} edicao={true} label="Data início" eventoCapturarTextoInput={handleDataInicio} />
+                    <InputText typeInput="date" valueInput="" idInput={"dataFimPeriodo"} edicao={true} label="Data fim" eventoCapturarTextoInput={handleDataFim} />
                 </div>
                 <Line />
                 <Title valueTitle="Subperíodos" />
@@ -136,9 +250,9 @@ export function PeriodoCriacao() {
                         return (
                             <div className={styles.inputSubperiodo} key={index} id={`${item}`}>
                                 <p className={styles.tituloSubperiodo}>{`${indexSubperiodo}° subperíodo`}</p>
-                                <InputText typeInput="text" idInput="nomeSubperiodo" placeholderInput="insira o nome do subperíodo" edicao={true} />
-                                <InputText typeInput="date" idInput="dataInicioSubperiodo" valueInput="" edicao={true} />
-                                <InputText typeInput="date" idInput="dataFimSubperiodo" valueInput="" edicao={true} />
+                                <InputText typeInput="text" idInput={indexSubperiodo.toString()} placeholderInput="insira o nome do subperíodo" edicao={true} eventoCapturarTextoInput={handleNomeSubperiodo} descricao_input="nome_subperiodo" />
+                                <InputText typeInput="date" idInput={indexSubperiodo.toString()} valueInput="" edicao={true} descricao_input="data_inicio_subperiodo" eventoCapturarTextoInput={handleDataInicioSubperiodo} />
+                                <InputText typeInput="date" idInput={indexSubperiodo.toString()} valueInput="" edicao={true} descricao_input="data_fim_subperiodo" eventoCapturarTextoInput={handleDataFimSubperiodo} />
                             </div>
                         )
                     })}
@@ -152,20 +266,4 @@ export function PeriodoCriacao() {
             <Alert variant="standard" severity="error" className={openErro ? styles.mostrarAlertaErro : styles.naoMostrarAlertaErro} onClose={() => { setOpenErro(false) }}>{mensagem}</Alert>
         </div>
     )
-
-    function capturarTipoPeriodo() {
-        let tiposPeriodo = document.querySelector("select");
-        let opcao = tiposPeriodo?.options[tiposPeriodo?.selectedIndex];
-        let tipo = opcao?.getAttribute("data-tipo");
-        return tipo;
-    }
-}
-
-
-const getValue = (data: any) => {
-    return data.value;
-}
-
-function isEmpty(campo: any) {
-    return campo === null || campo === "";
 }

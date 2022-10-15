@@ -25,7 +25,7 @@ export function Turmas() {
     const [openSucesso, setOpenSucesso] = useState(false);
 
     useEffect(() => {
-        axios.get(`${url}/turmas?id_usuario=4`)
+        axios.get(`${url}/turmas?id_usuario=1`)
             .then((response) => {
                 setTurmas(response.data.payload.content)
             })
@@ -52,7 +52,7 @@ export function Turmas() {
             <form className={styles.formSearch} action="">
                 <InputSearch inputName={"pesquisaTurma"} messagePlaceholder={"Buscar turma por título"} />
                 <SelectPeriodo />
-                <PageButton nameButton="criar turma" linkButton="/turmas/novo" colorButton="blue" />
+                <PageButton nameButton="criar turma" linkButton="/turmas/criacao" colorButton="blue" />
             </form>
             <section className={styles.listaTurmas}>
             {turmas.map(turma => {

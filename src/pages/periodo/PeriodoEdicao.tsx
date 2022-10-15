@@ -103,11 +103,16 @@ export function PeriodoEdicao() {
 
     function atualizarSubperiodo(idSubperiodoAtualizacao: number) {
 
-        let nomeSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[1]);
-        let dataInicioSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[2]);
-        let dataFimSubperiodo = getValue(document.querySelector(`[data-key="${idSubperiodoAtualizacao}"]`)?.children[3]);
+        let subperiodoInputs = document.querySelectorAll(`[data-input-key="${idSubperiodoAtualizacao}"]`);
         
-        console.log(dataInicioSubperiodo)
+
+        console.log(subperiodoInputs)
+
+        let nomeSubperiodo = getValue(subperiodoInputs[0]);
+        let dataInicioSubperiodo = getValue(subperiodoInputs[1]);
+        let dataFimSubperiodo = getValue(subperiodoInputs[2]);
+        
+        console.log(nomeSubperiodo)
 
         axios.put(`${url}/periodos/subperiodos/${idSubperiodoAtualizacao}`, {
 
@@ -131,20 +136,18 @@ export function PeriodoEdicao() {
         <div className={styles.periodoEdicao}>
             <Header title={`${periodoValue.nome_periodo}`} appendTitle="Edição" subtitle="Revise e edite o período de avaliação" username="Andreia Gomes" />
             <form className={styles.formularioPeriodo} key={periodoValue.id}>
-                <InputText typeInput="text" idInput="nomePeriodo" valueInput={periodoValue.nome_periodo} edicao={true} />
-                <SelectTipoPeriodo nomeTipoAtual={periodoValue.tipo_periodo} evento={handleChange} />
-                <InputText typeInput="date" idInput="dataInicioPeriodo" valueInput={periodoValue.data_inicio} edicao={true} />
-                <InputText typeInput="date" idInput="dataFimPeriodo" valueInput={periodoValue.data_fim} edicao={true} />
+                <InputText typeInput="text" idInput="nomePeriodo" valueInput={periodoValue.nome_periodo} edicao={true} label="Nome" />
+                <SelectTipoPeriodo nomeTipoAtual={periodoValue.tipo_periodo} evento={handleChange} label="Tipo" />
+                <InputText typeInput="date" idInput="dataInicioPeriodo" valueInput={periodoValue.data_inicio} edicao={true} label="Data início" />
+                <InputText typeInput="date" idInput="dataFimPeriodo" valueInput={periodoValue.data_fim} edicao={true} label="Data fim" />
                 <Line />
                 <Title valueTitle="Subperíodos" />
                 {subperiodos.map((subperiodo) => {
-                    indexSubperiodo++;
                     return (
-                        <div className={styles.listaSubperiodos} key={subperiodo.id} id="subperiodo" onChange={() => atualizarSubperiodo(subperiodo.id)} data-key={subperiodo.id}>
-                            <p className={styles.tituloSubperiodo}>{`${indexSubperiodo}° subperíodo`}</p>
-                            <InputText typeInput="text" idInput="nomeSubperiodo" valueInput={subperiodo.nome_subperiodo} edicao={true} />
-                            <InputText typeInput="date" idInput="dataInicioSubperiodo" valueInput={subperiodo.data_inicio} edicao={true} />
-                            <InputText typeInput="date" idInput="dataFimSubperiodo" valueInput={subperiodo.data_fim} edicao={true} />
+                        <div className={styles.listaSubperiodos} key={subperiodo.id} id={subperiodo.id.toString()} onChange={() => atualizarSubperiodo(subperiodo.id)} data-key={subperiodo.id}>
+                            <InputText typeInput="text" idInput="nomeSubperiodo" valueInput={subperiodo.nome_subperiodo} edicao={true} label="Nome" inputKey={subperiodo.id}/>
+                            <InputText typeInput="date" idInput="dataInicioSubperiodo" valueInput={subperiodo.data_inicio} edicao={true} label="Data início" inputKey={subperiodo.id}/>
+                            <InputText typeInput="date" idInput="dataFimSubperiodo" valueInput={subperiodo.data_fim} edicao={true} label="Data fim" inputKey={subperiodo.id} />
                         </div>
                     )
                 })}

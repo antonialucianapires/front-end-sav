@@ -8,7 +8,7 @@ export function QuestaoCard(props : any) {
            <header>
            <h2>{props.titulo}</h2>
            <ul id='listaOpcoes'>
-                <Link to={`/questoes/${1}/visualizacao`}><NotePencil size={27} color="var(--blue-500)"/></Link>
+                <Link to={`/questoes/${props.idQuestao}/visualizacao`}><NotePencil size={27} color="var(--blue-500)"/></Link>
                 <Trash size={27} color="var(--red-500)" onClick={() => props.eventoExcluir(props.idQuestao)} cursor="pointer"/>
             </ul>
            </header>

@@ -1,3 +1,7 @@
+.divSelecionarPeriodo {
+    width: 100%;
+}
+
 .selectPeriodo {
     width: 100%;
     background: var(--gray-300);
@@ -27,4 +31,12 @@
     background: var(--gray-300);
     pointer-events: none;
     touch-action: none;
+}
+
+.label {
+    display: block;
+}
+
+.semLabel {
+    display: none;
 }
