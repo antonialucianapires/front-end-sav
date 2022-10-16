@@ -19,6 +19,8 @@ import { QuestaoCriacao } from './pages/questoes/QuestaoCriacao';
 import { QuestaoVisualizacao } from './pages/questoes/QuestaoVisualizacao';
 import { QuestaoEdicao } from './pages/questoes/QuestaoEdicao';
 import { TurmaCriacao } from './pages/turma/TurmaCriacao';
+import { AvaliacaoCriacao } from './pages/avaliacao/AvaliacaoCriacao';
+import { AvaliacaoQuestao } from './pages/avaliacao/AvaliacaoQuestao';
 
 function App() {
 
@@ -46,6 +48,8 @@ function App() {
             <Route path='/questoes/criacao' element={<QuestaoCriacao />} />
             <Route path='/questoes/:id/visualizacao' element={<QuestaoVisualizacao />} />
             <Route path='/questoes/:id/edicao' element={<QuestaoEdicao />} />
+            <Route path='/avaliacoes/criacao' element={<AvaliacaoCriacao />} />
+            <Route path='/avaliacoes/:id/questoes' element={<AvaliacaoQuestao />} />
           </Routes>
         </Router>
       </div>

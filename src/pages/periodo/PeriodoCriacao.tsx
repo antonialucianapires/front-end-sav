@@ -53,7 +53,8 @@ export function PeriodoCriacao() {
     const [dataInicio, setDataInicio] = useState("");
     const [dataFim, setDataFim] = useState("");
     const [subperiodosLista, setSubperiodosLista] = useState<SubperiodoDto[]>([]);
-
+    const [dataInicioSubperiodo, setDataInicioSubperiodo] = useState("");
+    const [dataFimSubperiodo, setDataFimSubperiodo] = useState("");
 
     function handleValorTitulo(nomePeriodo: string) {
         setValorNomePeriodo(nomePeriodo);

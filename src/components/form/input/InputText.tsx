@@ -11,6 +11,7 @@ type InputTextType = {
     eventoCapturarTextoInput?: any;
     descricao_input?: string;
     inputKey? : number;
+    pattern? : string;
 }
 
 export function InputText(input: InputTextType){
