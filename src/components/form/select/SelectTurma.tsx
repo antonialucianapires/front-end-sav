@@ -41,8 +41,7 @@ export function SelectTurma(props: InputSelect) {
       };
 
     useEffect(() => {
-        //TODO: ajustar consulta deturma p n pedir usuario obrigatorio
-        fetch(`${url}/turmas?id_usuario=1`)
+        fetch(`${url}/turmas?id_usuario=4`)
             .then((response) => response.json())
             .then((data) => {
                 setTurmas(data.payload.content)
