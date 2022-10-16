@@ -41,7 +41,7 @@ export function Avaliacoes() {
             <form action="" className={styles.formSearch}>
                 <InputSearch inputName={"pesquisaAvaliacao"} messagePlaceholder={"Buscar avaliações por nome"} />
                 <SelectPeriodo />
-                <PageButton nameButton="criar turma" linkButton="/turmas/criacao" colorButton="blue" />
+                <PageButton nameButton="criar turma" linkButton="/avaliacoes/criacao" colorButton="blue" />
             </form>
             {avaliacoes.map(turma => {
                 return <CardAvaliacao key={turma.id} titulo={turma.titulo} />
