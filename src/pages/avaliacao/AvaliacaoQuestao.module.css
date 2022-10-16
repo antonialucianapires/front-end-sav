@@ -1,0 +1,138 @@
+.avaliacaoQuestoes {
+    max-width: 70rem;
+    padding: 1rem;
+}
+
+
+.blocoInfos {
+    width: 1000px;
+    padding: 1rem;
+    border: 1px solid var(--gray-500);
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+}
+
+.blocoInfos span {
+    width: 100%;
+    font-weight: bold;
+}
+
+.listaQuestoes {
+    width: 100%;
+}
+
+.listaQuestoes input {
+    width: 100px;
+}
+
+.formSearch {
+    display: flex;
+    width: 100%;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    width: 100%;
+  }
+  .formInputSearch {
+    background: var(--gray-300);
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    color: var(--gray-500);
+    border: 0;
+    border-radius: 8px;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.formInputSearch input{
+    background: var(--gray-300);
+    width: 100%;
+    border: 0;
+    outline: none;   
+}
+
+.formInputSearch label {
+    width: 100%;
+}
+
+
+.cardQuestao {
+    display: flex;
+    border: 1px solid var(--gray-300);
+    padding: 1rem;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: var(--gray-500);
+    border-radius: 8px;
+    width: 100%;
+}
+
+.cardQuestao .tituloQuestaoCard {
+    color: var(--blue-500);
+    font-weight: 600;
+    width: 100%;
+}
+
+.cardQuestao .enunciadoQuestaoCard {
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+  }
+
+  
+.formGroupQuestoes {
+    width: 100% !important;
+}
+
+.conjuntoInputsCard {
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+}
+
+.buttons {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.botaoSalvar {
+    border: none;
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--white);
+    text-decoration: none;
+    padding: 12px;
+    background: var(--green-200);
+    border-radius: 8px;
+    min-width: 150px;
+    max-width: 200px;
+    box-shadow: 0px 3px 3px var(--gray-500);
+    cursor: pointer;
+}
+
+
+.mostrarAlertaSucesso {
+    display: block;
+}
+
+.naoMostrarAlertaSucesso {
+    display: none !important;
+}
+
+.mostrarAlertaErro {
+    display: block;
+}
+
+.naoMostrarAlertaErro {
+    display: none !important;
+}

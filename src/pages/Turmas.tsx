@@ -8,6 +8,7 @@ import { SelectPeriodo } from "../components/form/select/SelectPeriodo";
 import { Header } from "../components/header/Header";
 import styles from './Turma.module.css';
 const url = import.meta.env.VITE_BASE_URL;
+const usuario = import.meta.env.USUARIO_ADMIN;
 
 type TurmaType = {
     id: number;
@@ -25,7 +26,7 @@ export function Turmas() {
     const [openSucesso, setOpenSucesso] = useState(false);
 
     useEffect(() => {
-        axios.get(`${url}/turmas?id_usuario=1`)
+        axios.get(`${url}/turmas?id_usuario=4`)
             .then((response) => {
                 setTurmas(response.data.payload.content)
             })
